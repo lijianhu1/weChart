@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "教育经历",
+	"navigationBarTextStyle": "black",
+	"navigationBarBackgroundColor": "#fff",
+	"usingComponents": {
+		"header": "/components/header/header",
+		"datepick-template": "/components/datepick/datepick"
+	}
+}

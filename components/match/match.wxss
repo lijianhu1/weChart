@@ -1,0 +1,18 @@
+.match {
+  background: #fff;
+  margin: 20rpx;
+  position: relative; }
+  .match .match-input {
+    padding: 10rpx;
+    border: 1px solid #E8E9EB; }
+  .match .match-list {
+    position: absolute;
+    top: 80rpx;
+    left: 0;
+    right: 0;
+    background: #fff;
+    max-height: 400rpx;
+    padding: 20rpx;
+    box-shadow: 0 0 5px #E8E9EB; }
+    .match .match-list .match-item {
+      padding: 5px; }

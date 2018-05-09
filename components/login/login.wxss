@@ -1,0 +1,67 @@
+.login-modal {
+  position: fixed;
+  z-index: 9999;
+  background: rgba(0, 0, 0, 0.6);
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0; }
+  .login-modal .flex-box {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+            justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+            align-items: center;
+    height: 100%; }
+  .login-modal .login-wrap {
+    width: 80%;
+    background: #fff;
+    border-radius: 5px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+            justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+            align-items: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+            flex-direction: column;
+    padding: 20rpx 20rpx 60rpx 20rpx; }
+    .login-modal .login-wrap .login-title {
+      margin: 40rpx 0 60rpx;
+      font-size: 36rpx; }
+    .login-modal .login-wrap button {
+      width: 90%;
+      margin: 10rpx;
+      font-size: 30rpx;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+              align-items: center;
+      -webkit-box-pack: center;
+      -webkit-justify-content: center;
+              justify-content: center;
+      padding-top: 10rpx;
+      padding-bottom: 10rpx; }
+      .login-modal .login-wrap button .iv-icon {
+        display: inline-block;
+        width: 44rpx;
+        height: 44rpx;
+        margin-right: 30rpx; }
+        .login-modal .login-wrap button .iv-icon.iv-icon-wx {
+          width: 50rpx;
+          height: 50rpx; }
+    .login-modal .login-wrap .login-close {
+      width: 40rpx;
+      -webkit-align-self: flex-end;
+              align-self: flex-end; }

@@ -1,0 +1,32 @@
+@charset "UTF-8";
+
+/**************全局变量********************/
+//颜色
+$g_greyColor: #f1eff0;
+$g_greenColor: #36be96;
+$g_redColor: #ff4f64;
+$g_blueColor:#07A3EE;
+$g_blackColor: #262E39;
+$g_brownColor: #B29956;
+$g_borderColor:#e8e9eb;
+
+//高宽
+$g_topBarH: 50px;
+$g_footerH: 0px;
+$g_headerH: $g_topBarH;
+$g_pageMinH: 600px;
+$g_pageMinW: 1200px;
+
+//字体
+$g_textSize: 10px;
+$g_textColor: #333;
+$g_textRed: #FE5A59;
+
+//主要用于z-index
+$g_indexLevel0: 1;
+$g_indexLevel1: 10;
+$g_indexLevel2: 20;
+$g_indexLevel3: 30;
+$g_indexLevel4: 40;
+
+

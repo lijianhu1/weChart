@@ -1,0 +1,15 @@
+<!--personal.wxml-->
+<!--<header title="{{title}}"></header>-->
+<view class="iv-container iv-border-top-min iv-pt1">
+	<form class="iv-form" bindsubmit="formSubmit">
+		<view class="iv-bg-white iv-pl40 iv-pr40">
+			<view class="iv-form-itam iv-form-textarea">
+				<textarea class="iv-item-textarea" name="selfEvaluate" value="{{formInfo.selfEvaluate}}" bindinput="selfEvaluateInput" maxlength="500" style="height: 15em;padding: 0;width: 690rpx;background-color: #fff;" placeholder="简单介绍下自己，字数控制在500字以内"/>
+				<view class="iv-item-textarea-num">{{num}}/500</view>
+			</view>
+		</view>
+		<view class="iv-mt15 iv-pl40 iv-pr40">
+		    <button type="warn" formType="submit" class="iv-btn iv-btn-red iv-border-radius-100"> 保 存 </button>
+		</view>
+	</form>
+</view>

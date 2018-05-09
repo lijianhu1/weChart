@@ -1,0 +1,39 @@
+<!--personal.wxml-->
+<!--<header title="{{title}}"></header>-->
+<view class="iv-container iv-border-top-win iv-pt1">
+	<form class="iv-form" bindsubmit="formSubmit">
+		<view class="iv-bg-white iv-pl40 iv-pr40">
+			<view class="iv-form-itam">
+				<view class="iv-item-title">学校名称</view>
+				<input class="iv-item-input" name="schoolName" value="{{formInfo.schoolName}}"  placeholder="请填写"/>
+			</view>
+			<view class="iv-form-itam">
+				<view class="iv-item-title">所学专业</view>
+				<input class="iv-item-input" name="specialty" value="{{formInfo.specialty}}"  placeholder="请填写"/>
+			</view>
+			<view class="iv-form-itam">
+				<view class="iv-item-title">学历</view>
+				<picker class="iv-item-input" name="education" bindchange="bindEduChange" value="{{formInfo.education}}" range="{{eduAll}}" range-key="value">
+			  		<input value="{{eduAll[formInfo.education].value}}" disabled  placeholder="请选择"/>
+			 	</picker>
+			</view>
+			<view class="iv-form-itam">
+				<view class="iv-item-title">开始时间</view>
+				<picker class="iv-item-input" name="startTime" mode="date" value="{{formStartTime}}" start="{{startTimes}}" end="{{endTime}}" fields="month" bindchange="bindStartChange">
+				    <input value="{{formInfo.startTime}}" disabled  placeholder="请选择"/>
+			 	</picker>
+			</view>
+			<view class="iv-form-itam">
+				<view class="iv-item-title">结束时间</view>
+				<datepick-template dateValue="{{formInfo.endTime}}" class="iv-item-input" bindsuccess="bindEndChange"></datepick-template>
+				<!--<picker class="iv-item-input" name="endTime" mode="date" value="{{formEndTime}}" start="{{startTime}}" end="{{endTimes}}" fields="month" bindchange="bindEndChange">-->
+				    <!--<input value="{{formInfo.endTime}}" disabled  placeholder="请选择"/>-->
+			 	<!--</picker>-->
+			</view>
+		</view>
+		<view class="iv-mt15 iv-pl40 iv-pr40">
+		    <button type="warn" formType="submit" class="iv-btn iv-btn-red iv-border-radius-100"> 保 存 </button>
+		</view>
+		<view class="iv-mt15 iv-color-red iv-text-center" wx:if="{{itemId}}" bindtap="formDelete">删除此教育经历</view>
+	</form>
+</view>

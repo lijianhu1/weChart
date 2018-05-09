@@ -1,0 +1,303 @@
+<!--index.wxml-->
+<!--<header title="{{title}}"></header>-->
+<view class="iv-container iv-border-top-min iv-pt1">
+	<view class="iv-bg-white public iv-pl40 iv-pr20">
+		<view class="iv-font34rpx">{{detail.resume.judgePhone?'简历已公开':'简历未公开'}}</view>
+		<switch checked="{{detail.resume.judgePhone}}" bindchange="openChange" name="switch" class="switch-input" color="#ff4f64" />
+	</view>
+	<view class="detail-top-wrap iv-mt15">
+		<view class="detail-top iv-border-bottom-min">
+			<image class="userinfo-avatar" bindtap="chooseImage" src="{{userInfo.avatarUrl}}"></image>
+			<view class="detail-top-con">
+				<view class="detail-top-con-name">
+					<text>{{detail.resume.name}}</text>
+					<view class="iv-ml15 iv-color-666">
+						<navigator hover-class="none" url="../resumeBasic/resumeBasic?isStep={{isStep}}">
+							<image class="ico ico-up" mode="widthFix" src="../../images/resume/ico-up.png"></image>
+							<text class="iv-color-red">编辑</text>
+						</navigator>
+					</view>
+				</view>
+				<view class="iv-slash iv-pt15 iv-pb15 iv-color-666">
+					<view wx:if="{{detail.resume.sex}}">{{detail.resume.sex}}</view>
+					<view wx:if="{{detail.resume.age}}">{{detail.resume.age}}岁</view>
+					<view wx:if="{{detail.resume.age}}">{{detail.resume.citySuperName?detail.resume.citySuperName+'，':''}}{{detail.resume.livingCityName}}</view>
+					<view wx:if="{{detail.resume.age}}">{{detail.resume.education}}</view>
+					<view wx:if="{{detail.resume.age}}">{{detail.resume.jobYear}}</view>
+				</view>
+				<view class="iv-color-666">
+					<text>完善度：{{detail.perfect}}%</text>
+				</view>
+			</view>
+		</view>
+		<view class="detail-top-contact iv-border-bottom-min">
+			<view wx:if="{{detail.resume.email}}" class="iv-mr15">
+				<image class="ico" mode="widthFix" src="../../images/resume/ico-email.png"></image>
+				{{detail.resume.email}}
+			</view>
+			<view wx:if="{{detail.resume.telephone}}">
+				<image class="ico" mode="widthFix" src="../../images/resume/ico-telephone.png"></image>
+				{{detail.resume.telephone}}
+			</view>
+		</view>
+		<view class="detail-top-jobStatue">
+			<view class="detail-top-jobStatue-title">求职状态</view>
+			<picker class="detail-top-jobStatue-input" name="jobState" bindchange="jobStatueChange" value="{{detail.resume.jobState-1}}" range="{{getJobStatus}}" range-key="value">
+				<input class="iv-color-666" value="{{getJobStatus[detail.resume.jobState-1].value}}" disabled placeholder="请选择" />
+			</picker>
+			<!--<input class="detail-top-jobStatue-input iv-color-666" value="{{getJobStatus[detail.resume.jobState-1].value}}" bindtap="modelToggle" disabled placeholder="请选择" />-->
+		</view>
+	</view>
+	<view class="detail-item iv-mt15">
+		<view class="detail-item-title iv-border-bottom-min" wx:if="{{detail.resume.job_super}}">
+			<view>
+				<image mode="widthFix" class="ico ico-title" src="../../images/resume/ico-expect.png"></image>求职意向
+			</view>
+			<view class="iv-color-red">
+				<navigator hover-class="none" url="../resumeExpect/resumeExpect?isStep={{isStep}}">编辑</navigator>
+			</view>
+		</view>
+		<view class="iv-pt15 iv-pb15" wx:if="{{detail.resume.job_super}}">
+			<block>
+				<view class="iv-pb15">职位：{{detail.resume.job_super}}</view>
+			</block>
+			<block>
+				<view class="iv-pb15">行业：{{detail.resume.industryName}}</view>
+			</block>
+			<view class="iv-slash iv-color-666">
+				<block>
+					<view>{{detail.resume.expectCityName}}</view>
+				</block>
+				<block>
+					<view>{{detail.resume.expectWorkType}}</view>
+				</block>
+				<block>
+					<view>{{detail.resume.expectSalary}}</view>
+				</block>
+			</view>
+		</view>
+	</view>
+	<view class="detail-item iv-mt15" wx:if="{{detail.resume.selfEvaluate}}">
+		<view class="detail-item-title iv-border-bottom-min" wx:if="{{detail.resume.selfEvaluate}}">
+			<view>
+				<image mode="widthFix" class="ico ico-title ico-self" src="../../images/resume/ico-self.png"></image>自我评价
+			</view>
+			<view class="iv-color-red">
+				<navigator hover-class="none" url="../resumeEvaluation/resumeEvaluation?isStep={{isStep}}">编辑</navigator>
+			</view>
+		</view>
+		<view class="iv-pt15 iv-pb15" wx:if="{{detail.resume.selfEvaluate}}">
+			<view class="iv-pt30 iv-pb30">
+				<!--<textarea class="iv-widthAuto" maxlength="-1" value="{{detail.resume.selfEvaluate}}" disabled auto-height/>-->
+				<text class="iv-text-textarea iv-color-666">{{detail.resume.selfEvaluate}}</text>
+			</view>
+		</view>
+		<!--<view class="add-more" wx:if="{{!detail.resume.selfEvaluate}}">
+			<navigator hover-class="none" url="../resumeEvaluation/resumeEvaluation">
+				<image class="ico" src="../../images/resume/ico-add.png"></image>
+				编辑自我评价
+			</navigator>
+		</view>-->
+	</view>
+	<view class="detail-item iv-mt15" wx:if="{{detail.work_experiences.length}}">
+		<view class="detail-item-title iv-border-bottom-min">
+			<view>
+				<image mode="widthFix" class="ico ico-title" src="../../images/resume/ico-job.png"></image>工作经历
+			</view>
+		</view>
+		<view class="timeline-wrap iv-border-bottom-min">
+			<view class="timeline" wx:for="{{detail.work_experiences}}" wx:key="unique" wx:for-item="item">
+				<view class="timeline-ico"></view>
+				<view class="iv-flex-justify-sb" style="line-height: 1;">
+					<view clas="iv-slash">
+						<block>{{item.startTime}}/{{item.endTime==0?'至今':item.endTime}}</block>
+					</view>
+					<view class="iv-color-red">
+						<block>
+							<navigator hover-class="none" url="../resumeWork/resumeWork?id={{item.id}}&listlength={{detail.work_experiences.length}}&perfect={{perfect}}&isStep={{isStep}}&jobYear={{jobYear}}">编辑</navigator>
+						</block>
+					</view>
+				</view>
+				<view class="iv-slash">
+					<block>
+						<view>{{item.compName}}</view>
+					</block>
+					<block>
+						<view>{{item.jobTitle}}</view>
+					</block>
+					<block>
+						<view class="iv-color-666">{{(item.salary=='不限')?'保密':item.salary}}</view>
+					</block>
+				</view>
+				<view wx:if="{{detail.resume.selfEvaluate}}">
+					<text class="iv-text-textarea iv-color-666">工作描述：{{item.workDesc}}</text>
+					<!--<textarea class="iv-widthAuto iv-color-666" value="工作描述：{{item.workDesc}}" maxlength="-1" disabled auto-height />-->
+				</view>
+			</view>
+		</view>
+		<view class="add-more">
+			<navigator hover-class="none" url="../resumeWork/resumeWork?isStep={{isStep}}&jobYear={{jobYear}}">
+				<image mode="widthFix" class="ico" src="../../images/resume/ico-add.png"></image>
+				添加工作经历
+			</navigator>
+		</view>
+	</view>
+	<view class="detail-item iv-mt15" wx:if="{{detail.projects.length}}">
+		<view class="detail-item-title iv-border-bottom-min">
+			<view>
+				<image mode="widthFix" class="ico ico-title" src="../../images/resume/ico-obj.png"></image>项目经历
+			</view>
+		</view>
+		<view class="timeline-wrap iv-border-bottom-min">
+			<view class="timeline" wx:for="{{detail.projects}}" wx:key="unique" wx:for-item="item">
+				<view class="timeline-ico"></view>
+				<view class="iv-flex-justify-sb" style="line-height: 1;">
+					<view class="iv-color-666">
+						<block>{{item.startTime}}/{{item.endTime==0?"至今":item.endTime}}</block>
+					</view>
+					<view class="iv-color-red">
+						<block>
+							<navigator hover-class="none" url="../resumeProject/resumeProject?id={{item.id}}&isStep={{isStep}}">编辑</navigator>
+						</block>
+					</view>
+				</view>
+				<view>项目名称：{{item.projectName}}</view>
+				<view class="iv-color-666" wx:if="{{detail.resume.selfEvaluate}}" >
+					<!--<textarea class="iv-widthAuto"value="项目描述：{{item.projectDesc}}" maxlength="-1" disabled auto-height />-->
+					<text class="iv-text-textarea iv-color-666">项目描述：{{item.projectDesc}}</text>
+				</view>
+				<view class="iv-color-666" wx:if="{{item.projectUrl}}">项目连接：{{item.projectUrl}}</view>
+			</view>
+		</view>
+		<view class="add-more">
+			<navigator hover-class="none" url="../resumeProject/resumeProject?isStep={{isStep}}">
+				<image mode="widthFix" class="ico" src="../../images/resume/ico-add.png"></image>
+				添加项目经历
+			</navigator>
+		</view>
+	</view>
+	<view class="detail-item iv-mt15" wx:if="{{detail.educations.length}}">
+		<view class="detail-item-title iv-border-bottom-min">
+			<view>
+				<image mode="widthFix" class="ico ico-title ico-edu" src="../../images/resume/ico-edu.png"></image>教育经历
+			</view>
+		</view>
+		<view class="timeline-wrap iv-border-bottom-min">
+			<view class="timeline" wx:for="{{detail.educations}}" wx:key="unique" wx:for-item="item">
+				<view class="timeline-ico"></view>
+				<view class="iv-flex-justify-sb" style="line-height: 1;">
+					<view class="iv-color-666">
+						<block>{{item.startTime}}/{{item.endTime==0?"至今":item.endTime}}</block>
+					</view>
+					<view class="iv-color-red">
+						<block>
+							<navigator hover-class="none" url="../resumeEducation/resumeEducation?id={{item.id}}&listlength={{detail.educations.length}}&perfect={{perfect}}&isStep={{isStep}}">编辑</navigator>
+						</block>
+					</view>
+				</view>
+				<view>
+					<block>学校名称：{{item.schoolName}}</block>
+				</view>
+				<view class="iv-slash">
+					<block>
+						<view>{{item.education}}</view>
+					</block>
+					<block>
+						<view>{{item.specialty}}</view>
+					</block>
+				</view>
+			</view>
+		</view>
+		<view class="add-more">
+			<navigator hover-class="none" url="../resumeEducation/resumeEducation?isStep={{isStep}}">
+				<image mode="widthFix" class="ico" src="../../images/resume/ico-add.png"></image>
+				添加教育经历
+			</navigator>
+		</view>
+	</view>
+
+	<view class="detail-item iv-mt15" wx:if="{{detail.skills.length}}">
+		<view class="detail-item-title iv-border-bottom-min" wx:if="{{detail.skills.length}}">
+			<view>
+				<image mode="widthFix" class="ico ico-title" src="../../images/resume/ico-skill.png"></image>掌握技能
+			</view>
+		</view>
+		<view class="timeline-wrap iv-border-bottom-min" wx:if="{{detail.skills.length}}">
+			<view class="timeline detail-item-skill" wx:for="{{detail.skills}}" wx:key="unique" wx:for-item="item">
+				<view class="timeline-ico"></view>
+				<view class="iv-slash iv-pb30" style="line-height: 1;">
+					<block>
+						<view>{{item.skillName}}</view>
+					</block>
+					<block>
+						<view>{{item.masterDegree}}</view>
+					</block>
+				</view>
+				<view class="iv-color-red iv-pb0">
+					<navigator hover-class="none" url="../resumeSkill/resumeSkill?id={{item.id}}&isStep={{isStep}}">编辑</navigator>
+				</view>
+			</view>
+		</view>
+		<view class="add-more">
+			<navigator hover-class="none" url="../resumeSkill/resumeSkill?isStep={{isStep}}">
+				<image mode="widthFix" class="ico" src="../../images/resume/ico-add.png"></image>
+				添加掌握技能
+			</navigator>
+		</view>
+	</view>
+
+	<view class="detail-add-more" wx:if="{{!detail.resume.job_super}}">
+		<navigator hover-class="none" url="../resumeExpect/resumeExpect?isStep={{isStep}}">
+			<image mode="widthFix" class="ico" src="../../images/resume/ico-add.png"></image>
+			编辑求职意向
+		</navigator>
+	</view>
+	<view class="detail-add-more" wx:if="{{!detail.work_experiences.length}}">
+		<navigator hover-class="none" url="../resumeWork/resumeWork?isStep={{isStep}}&jobYear={{jobYear}}">
+			<image mode="widthFix" class="ico" src="../../images/resume/ico-add.png"></image>
+			添加工作经历
+		</navigator>
+	</view>
+	<view class="detail-add-more" wx:if="{{!detail.educations.length}}">
+		<navigator hover-class="none" url="../resumeEducation/resumeEducation?isStep={{isStep}}">
+			<image mode="widthFix" class="ico" src="../../images/resume/ico-add.png"></image>
+			添加教育经历
+		</navigator>
+	</view>
+	<view class="detail-add-more" wx:if="{{showMore&&!detail.projects.length}}">
+		<navigator hover-class="none" url="../resumeProject/resumeProject?isStep={{isStep}}">
+			<image mode="widthFix" class="ico" src="../../images/resume/ico-add.png"></image>
+			添加项目经历
+		</navigator>
+	</view>
+	<view class="detail-add-more" wx:if="{{showMore&&!detail.skills.length}}">
+		<navigator hover-class="none" url="../resumeSkill/resumeSkill?isStep={{isStep}}">
+			<image mode="widthFix" class="ico" src="../../images/resume/ico-add.png"></image>
+			添加掌握技能
+		</navigator>
+	</view>
+	<view class="detail-add-more" wx:if="{{showMore&&!detail.resume.selfEvaluate}}">
+		<navigator hover-class="none" url="../resumeEvaluation/resumeEvaluation?isStep={{isStep}}">
+			<image mode="widthFix" class="ico" src="../../images/resume/ico-add.png"></image>
+			编辑自我评价
+		</navigator>
+	</view>
+	<view class="show-more" wx:if="{{!detail.projects.length||!detail.skills.length||!detail.resume.selfEvaluate}}" bindtap="moreToggle">
+		<image mode="widthFix" class="ico ico-less" src="../../images/resume/{{showMore?'ico-more':'ico-less'}}.png"></image>
+		{{showMore?'收起更多模块':'展开更多模块'}}
+	</view>
+</view>
+<!--<view class="iv-picker-model" hidden="{{!pickerModel}}">
+	<view class="iv-modal-bg" bindtap="modelToggle"></view>
+	<view class="iv-picker-wrap">
+		<view class="iv-picker-btn">
+			<view class="iv-color-666" bindtap="modelToggle">取消</view>
+			<view bindtap="jobStatueChange">完成</view>
+		</view>
+		<picker-view class="iv-picker-item" indicator-style="height: 50px;" value="{{value}}" bindchange="jobStatueModalChange">
+			<picker-view-column class="iv-picker">
+				<view class="iv-picker-text" wx:for="{{getJobStatus}}" wx:key="item">{{item.value}}</view>
+			</picker-view-column>
+		</picker-view>
+	</view>
+</view>-->

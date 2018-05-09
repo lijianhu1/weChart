@@ -1,0 +1,234 @@
+@charset "UTF-8";
+
+/* CSS Document */
+
+@import "../../utils/scss/base_variable";
+@import "../../utils/scss/base_tool";
+
+/**detail.w..xss**/
+
+.public {
+    display: flex;
+    flex: 1;
+    justify-content: space-between;
+    align-items: center;
+    height: 100rpx;
+    .wx-switch-input {
+//      60,30
+        width: 86rpx !important;
+        height: 50rpx !important;
+        
+//      width: 82rpx !important;
+//      height: 40rpx !important;
+        /*白色样式（false的样式）*/
+        &::before {
+            width: 84rpx !important;
+            height: 47rpx !important;
+            
+//          width: 80rpx !important;
+//          height: 36rpx !important;
+        }
+        /*绿色样式（true的样式）*/
+        &::after {
+            width: 47rpx !important;
+            height: 47rpx !important;
+            
+//          width: 40rpx !important;
+//          height: 36rpx !important;
+        }
+    }
+}
+.detail-top-wrap {
+    padding: 0 40rpx;
+    flex-direction: column;
+    background-color: #fff;
+    .detail-top {
+        display: flex;
+        align-items: center;
+        padding: 15px 0;
+        .userinfo-avatar {
+            width: 128rpx;
+            height: 128rpx;
+            border-radius: 50%;
+            margin-right: 1em;
+        }
+        .detail-top-con {
+            flex: 1;
+            .detail-top-con-name {
+                display: flex;
+                font-weight: bold;
+                font-size: 32rpx;
+                align-items: flex-end;
+                view {
+                    font-size: 30rpx;
+                    font-weight: normal;
+                }
+                //              justify-content: space-between;
+            }
+        }
+    }
+    .detail-top-contact {
+        display: flex;
+        padding: 20px 0;
+        align-items: center;
+    }
+    .detail-top-jobStatue {
+        padding: 40rpx 30rpx 40rpx 10rpx;
+        position: relative;
+        display: flex;
+        align-items: center;
+        background-color: #fff;
+        .detail-top-jobStatue-title {
+            flex: 0 0 4em;
+            text-align-last: justify;
+        }
+        .detail-top-jobStatue-input {
+            flex: 1;
+            text-align: right;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            padding-left: 20%;
+            &:after {
+                content: " ";
+                display: inline-block;
+                height: 18rpx;
+                width: 18rpx;
+                border-width: 2rpx 2rpx 0 0;
+                border-color: #d9d9d9;
+                border-style: solid;
+                transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+                position: absolute;
+                top: 50%;
+                margin-top: -8rpx;
+                right: 0;
+            }
+        }
+//      .detail-top-jobStatue-input {
+//          flex: 1;
+//          text-align: right;
+//          input{
+//              overflow: hidden;
+//              text-overflow: ellipsis;
+//              white-space: nowrap;
+//              padding-left: 20%;
+//          }
+//      }
+//      picker {
+//          &.detail-top-jobStatue-input:after {
+//              content: " ";
+//              display: inline-block;
+//              height: 18rpx;
+//              width: 18rpx;
+//              border-width: 2rpx 2rpx 0 0;
+//              border-color: #888888;
+//              border-style: solid;
+//              transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+//              position: absolute;
+//              top: 50%;
+//              margin-top: -8rpx;
+//              right: 0;
+//          }
+//      }
+    }
+}
+
+.detail-item {
+    padding: 0 40rpx;
+    background-color: #fff;
+    .detail-item-title {
+        padding: 15px 0;
+        display: flex;
+        justify-content: space-between;
+    }
+    .timeline-wrap {
+        padding: 15px 0 0 10rpx;
+        .timeline {
+            padding-left: 30rpx;
+            position: relative;
+            border-left: 1rpx solid #D9D9D9;
+            .timeline-ico{
+                display: block;
+                width: 26rpx;
+                height: 26rpx;
+                background-color: #fff;
+                border: 1px solid $g_redColor;
+                border-radius: 50%;
+                position: absolute;
+                top: 0;
+                left: -13rpx;
+                &:before {
+                    content: '';
+                    display: block;
+                    margin: 4rpx auto;
+                    width: 14rpx;
+                    height: 14rpx;
+                    background-color: $g_redColor;
+                    border-radius: 50%;
+                }
+            }
+            &>view{
+                padding-bottom: 20rpx;
+                &:last-child{
+                    padding-bottom: 50rpx;
+                }
+            }
+            .iv-slash{
+                align-items: center;
+            }
+        }
+    }
+    textarea{
+        height: 0px;
+    }
+    .add-more {
+        padding: 15px 0;
+        text-align: center;
+    }
+    .detail-item-skill {
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+.show-more {
+    margin-top: 15px;
+    text-align: center;
+    padding: 15px 0;
+    background-color: $g_redColor;
+    color: #fff;
+}
+.ico{
+    width: 14px;
+    height: 14px;
+    position:relative;
+    top:1px;
+    margin-right: 4rpx;
+    &.ico-up{
+        top:0
+    }
+    &.ico-title{
+        width: 16px;
+        height: 16px;
+        top:3px;
+        margin-right: 10rpx;
+    }
+    &.ico-edu{
+        width: 20px;
+    }
+    &.ico-self{
+        width: 18px;
+    }
+    &.ico-less,&.ico-more{
+        width: 35rpx;
+        height: 35rpx;
+        margin-right: 16rpx;
+        top:2px;
+    }
+}
+.detail-add-more{
+    margin-top: 15px;
+    padding: 15px 40rpx;
+    text-align: center;
+    background-color: #fff;
+}

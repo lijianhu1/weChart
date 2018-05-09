@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "项目经历",
+	"navigationBarTextStyle": "black",
+	"navigationBarBackgroundColor": "#ffffff",
+	"usingComponents": {
+		"header": "/components/header/header",
+		"datepick-template": "/components/datepick/datepick"
+	}
+}

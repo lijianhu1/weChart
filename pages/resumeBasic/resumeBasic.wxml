@@ -1,0 +1,75 @@
+<!--personal.wxml-->
+<!--<header title="{{title}}"></header>-->
+<view class="iv-container iv-border-top-min iv-pt1">
+	<form class="iv-form" bindsubmit="basicSubmit">
+		<view class="iv-bg-white iv-pl40 iv-pr40">
+			<view class="iv-form-itam" wx:if="{{!paytyper}}">
+				<view class="iv-item-title">姓名</view>
+				<input class="iv-item-input" name="name" maxlength="20" value="{{basicInfo.name}}" placeholder="请填写"/>
+			</view>
+			<view class="iv-form-itam"wx:if="{{paytyper}}">
+				<view class="iv-item-title iv-color-999">姓名</view>
+				<input class="iv-item-input iv-item-input-disabled" disabled name="name"wx:if="{{paytyper}}" value="{{basicInfo.name}}"/>
+			</view>
+			<view class="iv-form-itam">
+				<view class="iv-item-title">性别</view>
+				<picker class="iv-item-input" name="sex" bindchange="bindSexChange" value="{{basicInfo.sex}}" range="{{sexAll}}" range-key="value">
+					<input value="{{sexAll[basicInfo.sex].value}}" disabled  placeholder="请选择"/>
+			 	</picker>
+			 	<!--<input class="iv-item-picker" value="{{sexAll[basicInfo.sex].value}}" bindtap="sexModelToggle" disabled  placeholder="请选择"/>-->
+			</view>
+			<view class="iv-form-itam">
+				<view class="iv-item-title">出生年月</view>
+				<picker class="iv-item-input" name="birthday" mode="date" value="{{formBirthday}}" start="{{birthdayStart}}" end="{{birthdayEnd}}" fields="month" bindchange="bindBirthdayChange">
+				    <input value="{{basicInfo.birthday}}" disabled  placeholder="请选择"/>
+			 	</picker>
+			</view>
+			<view class="iv-form-itam">
+				<view class="iv-item-title">工作年限</view>
+				<picker class="iv-item-input" name="myJobYear" bindchange="bindJobYearChange" value="{{basicInfo.myJobYear}}" range="{{yearAll}}" range-key="value">
+					<input value="{{yearAll[basicInfo.myJobYear].value}}" disabled  placeholder="请选择"/>
+			 	</picker>
+			</view>
+			<view class="iv-form-itam">
+				<view class="iv-item-title">学历</view>
+				<picker class="iv-item-input" name="edu" bindchange="bindEduChange" value="{{basicInfo.edu}}" range="{{eduAll}}" range-key="value">
+			  		<input value="{{eduAll[basicInfo.edu].value}}" disabled  placeholder="请选择"/>
+			 	</picker>
+			</view>
+			<view class="iv-form-itam">
+				<view class="iv-item-title">现居地</view>
+				<picker class="iv-item-input" name="cityIndex" mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{basicInfo.cityIndex}}" range="{{cityArray}}" range-key="value">
+				    <!--<input value="{{basicInfo.cityIndex[0]!==''?cityArray[0][basicInfo.cityIndex[0]].value+'，'+cityArray[1][basicInfo.cityIndex[1]].value+'，'+cityArray[2][basicInfo.cityIndex[2]].value:''}}" disabled  placeholder="请选择"/>-->
+				    <input value="{{cityName}}" disabled  placeholder="请选择"/>
+				</picker>
+			</view>
+		</view>
+		<view class="iv-bg-white iv-pl40 iv-pr40 iv-mt15">
+			<view class="iv-form-itam">
+				<view class="iv-item-title">电子邮箱</view>
+				<input class="iv-item-input" name="email" value="{{basicInfo.email}}"  placeholder="请填写"/>
+			</view>
+			<view class="iv-form-itam" bindtap="modifyTelphone">
+				<view class="{{paytyper==1?'iv-item-title iv-color-999':'iv-item-title'}}">手机号码</view>
+				<input class=" {{paytyper==1?'iv-item-input iv-color-999':'iv-item-input iv-more'}}" disabled name="telephone" value="{{basicInfo.telephone}}" type="number" maxlength="11"  placeholder="请填写"/>
+			</view>
+		</view>
+		<view class="iv-mt15 iv-pl40 iv-pr40">
+		    <button type="warn" formType="submit" class="iv-btn iv-btn-red iv-border-radius-100"> 保 存 </button>
+		</view>
+	</form>
+</view>
+<view class="iv-picker-model" hidden="{{!sexPickerModel}}">
+	<view class="iv-modal-bg"></view>
+	<view class="iv-picker-wrap">
+		<view class="iv-picker-btn">
+			<view class="iv-color-666" bindtap="sexModelToggle">取消</view>
+			<view bindtap="bindSexChange">完成</view>
+		</view>
+		<picker-view class="iv-picker-item" indicator-style="height: 50px;" value="{{value}}" bindchange="bindSexModalChange">
+			<picker-view-column class="iv-picker">
+				<view class="iv-picker-text" wx:for="{{sexAll}}" wx:key="item">{{item.value}}</view>
+			</picker-view-column>
+		</picker-view>
+	</view>
+</view>

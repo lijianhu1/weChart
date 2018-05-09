@@ -1,0 +1,104 @@
+<!--index.wxml-->
+<!--<header title="{{title}}"></header>-->
+<view class="iv-container iv-border-top-min iv-pt1" style="padding-bottom: 93px;">
+	<view class="detail-top-wrap iv-bg-white iv-pl40 iv-pr20">
+		<view class="iv-flex-align-fe iv-flex-wrap iv-pt40 iv-pb40">
+			<view class="detail-top-name iv-mr5">{{talentInfo.jobName}}</view>
+			<view class="detail-top-salary" wx:if="{{talentInfo.salary}}">{{talentInfo.salary}}/K</view>
+		</view>
+		<view class="iv-flex detail-top-basic iv-flex-wrap iv-pb40">
+			<view class="iv-vertical-middle-container" wx:if="{{talentInfo.cityName}}"><image class="ico ico-city first-level" mode="widthFix" src="../../images/position/ico-city.png"></image>{{talentInfo.cityName}}</view>
+			<view class="iv-vertical-middle-container" wx:if="{{talentInfo.workYear}}"><image class="ico first-level" mode="widthFix" src="../../images/resume/ico-job.png"></image>{{talentInfo.workYear}}</view>
+			<view class="iv-vertical-middle-container" wx:if="{{talentInfo.jobEducation}}"><image class="ico ico-edu first-level" mode="widthFix" src="../../images/resume/ico-edu.png"></image>{{talentInfo.jobEducation}}</view> 
+			<view class="iv-vertical-middle-container" wx:if="{{talentInfo.workType}}"><image class="ico first-level" mode="widthFix" src="../../images/position/ico-time.png"></image>{{talentInfo.workType}}</view>
+			<view class="iv-vertical-middle-container" wx:if="{{talentInfo.sex}}"><image class="ico ico-sex first-level" mode="widthFix" src="../../images/position/ico-sex.png"></image>{{talentInfo.sex}}</view>
+		</view>
+		<view class="iv-color-666 iv-pb40" wx:if="{{talentInfo.merit}}">职位诱惑：{{talentInfo.merit}}</view>
+		<navigator hover-class="none" url="../companyInfo/companyInfo?talentId={{talentId}}&compId={{compId}}">
+			<view class="detail-top-job iv-border-top-min">
+				<image wx:if="{{talentInfo.logoName}}" class="detail-top-logo" src="{{'https://www.yifengjianli.com/download/getCompanyIcon/companyLogo/'+talentInfo.logoName}}"></image>
+				<image wx:else src="/images/common/logo_default.png" lazy-load="true" class="detail-top-logo" mode="aspectFit"></image>
+				<view class="detail-top-job-con">
+					<view>
+						<text>{{talentInfo.compName}}</text>
+					</view>
+					<view class="iv-slash-s iv-flex-wrap iv-flex iv-pt15 iv-pb15 iv-color-666">
+						<view wx:if="{{talentInfo.areaName}}">{{talentInfo.areaName}}</view>
+						<view wx:if="{{talentInfo.compProperty}}">{{talentInfo.compProperty}}</view>
+						<view wx:if="{{talentInfo.compSize}}">{{talentInfo.compSize}}</view>
+					</view>
+					<view class="iv-flex iv-color-666" wx:if="{{talentInfo.positionNum}}">
+						<text>正在招聘</text>
+						<view class="iv-color-red iv-ml3 iv-mr3">{{talentInfo.positionNum}}</view>个职位
+					</view>
+				</view>
+			</view>
+		</navigator>
+	</view>
+	<view class="detail-item iv-mt15 iv-pb40">
+		<view class="detail-item-title iv-border-bottom-min">
+			<view><image class="ico ico-position ico-title" mode="widthFix" src="../../images/position/ico-position.png"></image>职位描述</view>
+		</view>
+		<view class="detail-statue iv-flex-wrap iv-flex-align-cen iv-pt30" wx:if="{{talentInfo.jobTitleName}}">
+			职位类别：
+			<view>{{talentInfo.jobTitleName}}</view>
+		</view>
+		<view class="iv-color-666 iv-pt30" wx:if="{{talentInfo.jobInfo}}">
+			工作职责：
+			<!--<textarea class="iv-widthAuto" style="z-index: 0;" value="{{talentInfo.jobInfo}}" maxlength="-1" disabled auto-height />-->
+			<text class="iv-color-666">{{talentInfo.jobInfo}}</text>
+		</view>
+		<view class="iv-color-666 iv-pt30" wx:if="{{talentInfo.jobDuties}}">
+			岗位要求：
+			<!--<textarea class="iv-widthAuto" style="z-index: 0;" value="{{talentInfo.jobDuties}}" maxlength="-1" disabled auto-height />-->
+			<text class="iv-color-666">{{talentInfo.jobDuties}}</text>
+		</view>
+	</view>
+	<view class="detail-item iv-mt15" hidden="{{showMore}}" wx:if="{{talentInfo.addr}}">
+		<view class="detail-item-title iv-border-bottom-min">
+			<view><image class="ico ico-title ico-addr" mode="widthFix" src="../../images/position/ico-addr.png"></image>公司地址</view>
+		</view>
+		<view class="iv-pt30 iv-pb50">
+			{{talentInfo.adress}}
+		</view>
+	</view>
+</view>
+<view class="detail-float">
+	<button open-type="share" class="detail-float-share">
+		<image src="../../images/position/ico-share.png"></image>
+		分享
+	</button>
+	<image class="iv-icon-mes" bindtap="mesModal" mode="widthFix" src="/images/position/mes.png"></image>
+	<view class="detail-float-btn">
+		<button type="warn" class="iv-btn iv-btn-red" wx:if="{{!isDelivery&&talentInfo.jobGold}}" bindtap="userDelivery">
+			<image class="ico ico-delivery" src="../../images/position/ico-delivery.png"></image>投递简历最高可得{{talentInfo.jobGold}}金币</button>
+		<button type="warn" class="iv-btn iv-btn-red" wx:if="{{!isDelivery&&!talentInfo.jobGold}}" bindtap="userDelivery">投递简历</button>
+		<view type="warn" class="iv-btn iv-btn-grey" wx:if="{{isDelivery}}">已投递</view>
+	</view>
+
+	<view class="clear"></view>
+</view>
+<view class="iv-modal-container" bindtap="modelToggle" wx:if="{{modal}}">
+	<view class="iv-modal-bg"></view>
+	<view class="red-packets-wrap">
+		<view class="red-packets">
+			<icon class="icon-small" type="cancel" size="23" color="#fff"></icon>
+			<image class="red-packets-img" src="../../images/position/ico-redPackets.png"></image>
+			<view class="red-packets-title">简历投递成功，恭喜获得</view>
+			<view class="red-packets-con">{{talentInfo.jobGold}}ivva金币</view>
+			<view class="red-packets-pice">{{talentInfo.jobGold}}金币</view>
+		</view>
+	</view>
+</view>
+
+<login-template login-dialog="{{loginDialog}}" id="login-dialog" bindload="getTalentDemand" bindclose="closeLogin"></login-template>
+<modal buttonType="false" dialogData="{{mesModalData}}">
+	<view class="iv-mb30rpx">金币职位投递规则</view>
+	<view class="mes-text ">该金币职位总收益为400金币</view>
+	<view class="mes-text iv-mb20rpx">投递者将按照投递先后顺序阶梯式分配</view>
+	<view class="mes-text">前10位投递用户将平均分配25%职位金币总数</view>
+	<view class="mes-text">第11到30位投递用户将平均分配25%职位金币总数</view>
+	<view class="mes-text">第31到60位投递用户将平均分配25%职位金币总数</view>
+	<view class="mes-text">第61到100位投递用户将平均分配25%职位金币总数</view>
+	<view class="mes-text iv-mt20rpx">金币职位金币数分配完后变为普通职位，不再分配金币</view>
+</modal>

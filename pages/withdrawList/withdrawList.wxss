@@ -1,0 +1,20 @@
+page {
+  background: #fff; }
+
+.withdraw-list {
+  margin: 20rpx 5%; }
+  .withdraw-list .withdraw-item {
+    border-bottom: 1px solid #E8E9EB;
+    padding: 20rpx; }
+    .withdraw-list .withdraw-item .withdraw-row {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-box-pack: justify;
+      -webkit-justify-content: space-between;
+              justify-content: space-between;
+      line-height: 40rpx; }
+      .withdraw-list .withdraw-item .withdraw-row .success {
+        color: #36BE96; }
+      .withdraw-list .withdraw-item .withdraw-row .error {
+        color: #FF4F64; }

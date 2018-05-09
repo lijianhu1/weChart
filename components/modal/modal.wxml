@@ -1,0 +1,18 @@
+<view class="iv-modal-container" wx:if="{{dialogData.show}}" catchtouchmove="true" >
+	<view class="iv-modal-bg" ></view>
+	<view class="iv-modal-wrap">
+		<view class="iv-modal-con">
+			<view class="iv-modal-title" wx:if="{{dialogData.title}}">{{dialogData.title}}</view>
+
+			<view class="iv-modal-message"><slot></slot>{{dialogData.content}}</view>
+			<view class="iv-modal-btn">
+				<text class="iv-modal-btn-cancel" wx:if="{{buttonType=='false'||buttonType==''}}" bindtap="_modaltCancel">{{dialogData.cancel||'取消'}}</text>
+				<text class="iv-modal-btn-submit active" wx:if="{{buttonType=='true'||buttonType==''}}" bindtap="_modalConfirm">{{dialogData.confirm||'确定'}}</text>
+			</view>
+		</view>
+	</view>
+</view>
+
+<!--注释-->
+<!-- buttonType：显示按钮  不传：确定和取消按钮同时显示，true:只显示确定按钮，false:只显示取消按钮-->
+<!-- 回调：bindcancel="fun":取消后回调 bindconfirm="fun":成功后回调 -->

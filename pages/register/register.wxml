@@ -1,0 +1,29 @@
+<view class="iv-login-form">
+  <view class="section border-bottom-line iv-mb10rpx">
+    <image class="iv-icon icon-tel" src="/images/common/phone2.png" mode="widthFix"></image>
+    <input placeholder="请输入手机号" type="number" bindinput="telInput" auto-focus/>
+  </view>
+  <view class="section border-bottom-line iv-mb60rpx ">
+    <image class="iv-icon" src="/images/common/dun.png" mode="widthFix"></image>
+    <view class="iv-flex-justify-sb iv-flex-align-cen flex1">
+      <input placeholder="请输入验证码" class="flex1" type="number" bindinput="codeInput" />
+      <view class="get-code">
+        <text wx:if="{{isGetCode}}" class="fontsize30" bindtap="getCode">获取验证码</text>
+        <text wx:else class="fontsize24">{{time}}s后再次获取</text>
+      </view>
+    </view>
+  </view>
+  <view class="section register-check">
+    <checkbox-group bindchange="checkboxChange">
+      <checkbox id="checkbox" class="checkbox" value="{{checked}}"/>
+      <label for="checkbox">接受用户服务协议</label>
+      <navigator url="/pages/protocol/protocol" class="iv-color-red iv-mr20rpx">《ivva用户协议》</navigator>
+    </checkbox-group>
+  </view>
+  <view  class="section iv-mb30rpx">
+    <button   class="iv-btn iv-btn-red" disabled="{{!checked||!codeTrue}}" bindtap="register"> 注 册 </button>
+  </view>
+  <view class="section iv-flex-justify-end ">
+    <navigator url="/pages/login/login" class="iv-color-red iv-mr20rpx">返回登录</navigator>
+  </view>
+</view>

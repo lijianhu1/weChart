@@ -1,0 +1,65 @@
+<scroll-view scroll-y style="height: 100vh">
+  <view class="company-top">
+    <view class="info">
+      <text class="company-name">{{companyInfo.compName}}</text>
+      <view class="company-other iv-color-999">
+        <text>{{companyInfo.areaName}}</text>
+        <text>{{companyInfo.compProperty}}</text>
+        <text>{{companyInfo.compSize}}</text>
+      </view>
+    </view>
+    <image class="logo" lazy-load="true" wx:if="{{companyInfo.logoName}}" src="{{'https://www.yifengjianli.com/download/getCompanyIcon/companyLogo/'+companyInfo.logoName+'?time='+getTime}}" mode="aspectFit"></image>
+    <image class="logo" wx:else src="/images/common/logo_default.png" mode="aspectFit"></image>
+  </view>
+  <view class="page-bg">
+    <view class="company-con">
+      <view class="company-tab-nav">
+        <text class="{{tab==1?'active':''}}" data-tab="1" bindtap="tabChange">公司主页</text>
+        <text class="{{tab==2?'active':''}}" data-tab="2" bindtap="tabChange">在招职位</text>
+      </view>
+      <view class="company-tab-page" wx:if="{{tab==1}}">
+        <view class="company-tab-list">
+          <view>
+            <text class="company-title">公司介绍</text>
+            <view class="company-info">
+              <text class="iv-color-999">
+                {{companyInfo.companyIntro}}
+              </text>
+              <!--<view class="toggle" bindtap="toggleCompDesc">-->
+                <!--<image wx:if="{{compDescStage}}"  class="iv-icon" mode="widthFix" src="/images/common/arrow_down2.png"></image>-->
+                <!--<image wx:else class="iv-icon"  mode="widthFix" src="/images/common/arrow_up.png"></image>-->
+              <!--</view>-->
+            </view>
+          </view>
+          <view>
+            <text class="company-title">公司地址</text>
+            <view class="company-info">
+              <text class="iv-color-666" bindtap="openLocation">{{companyInfo.addr}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="company-tab-page" wx:if="{{tab==2}}">
+        <block wx:for="{{positionList}}" wx:key="{{item.id}}">
+          <view class="position-item" bindtap="getPositionDetail" data-user-id="{{item.compId}}" data-position-id="{{item.id}}">
+            <view class="job-item">
+              <text class="iv-font32rpx">{{item.jobName}}</text>
+              <text class="job-salary">{{item.jobSalaryFrom}}-{{item.jobSalaryTo}}k</text>
+            </view>
+            <view class="job-item">
+              <view class="job-other">
+                <text>{{item.cityName}}</text>
+                <text>{{item.workYear}}</text>
+                <text>{{item.jobEducation}}</text>
+              </view>
+              <text class="job-date">{{item.releaseTime}}</text>
+            </view>
+          </view>
+        </block>
+        <text class="iv-flex-justify-cen iv-color-999 iv-mt30rpx iv-mb30rpx" wx:if="{{updataEnd}}">我是有底线的</text>
+        <text class="iv-flex-justify-cen iv-color-999 iv-mt30rpx " wx:else="{{updataEnd}}" bindtap="loadMore">点击加载更多</text>
+      </view>
+    </view>
+  </view>
+
+</scroll-view>

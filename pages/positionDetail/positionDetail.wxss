@@ -1,0 +1,183 @@
+@charset "UTF-8";
+/* CSS Document */
+/**************全局变量********************/
+/**************全局变量********************/
+/*全局样式*/
+/*透明度*/
+/*modal-close*/
+/**detail.w..xss**/
+.detail-top-wrap {
+  background-color: #fff; }
+  .detail-top-wrap .detail-top-name {
+    font-weight: bold;
+    font-size: 34rpx; }
+  .detail-top-wrap .detail-top-salary {
+    color: #ff4f64; }
+  .detail-top-wrap .detail-top-basic view {
+    margin-right: 30rpx;
+    line-height: 60rpx; }
+  .detail-top-wrap .detail-top-job {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+            align-items: center;
+    padding: 20px 0 30px; }
+    .detail-top-wrap .detail-top-job .detail-top-logo {
+      width: 150rpx;
+      height: 150rpx;
+      border-radius: 50%;
+      margin-right: 1em; }
+    .detail-top-wrap .detail-top-job .detail-top-job-con {
+      -webkit-box-flex: 1;
+      -webkit-flex: 1;
+              flex: 1; }
+    .detail-top-wrap .detail-top-job:after {
+      content: " ";
+      display: inline-block;
+      height: 18rpx;
+      width: 18rpx;
+      border-width: 2rpx 2rpx 0 0;
+      border-color: #d9d9d9;
+      border-style: solid;
+      -webkit-transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+              transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+      position: absolute;
+      top: 50%;
+      margin-top: -8rpx;
+      right: 0; }
+
+.detail-item {
+  padding: 0 40rpx;
+  background-color: #fff; }
+  .detail-item .detail-item-title {
+    font-size: 32rpx;
+    padding: 15px 0;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+            justify-content: space-between; }
+  .detail-item .detail-statue view {
+    background-color: #F5F6FA;
+    padding: 15rpx 30rpx;
+    margin-right: 20rpx;
+    border-radius: 30px;
+    color: #666; }
+
+.detail-float {
+  text-align: center;
+  padding: 15px 0;
+  position: fixed;
+  bottom: 0;
+  width: 100%; }
+  .detail-float:before {
+    content: '';
+    display: block;
+    background-color: rgba(255, 255, 255, 0.9);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1; }
+  .detail-float .clear {
+    clear: both; }
+  .detail-float .iv-icon-mes {
+    float: right;
+    width: 36rpx;
+    line-height: 1;
+    margin: 32rpx 40rpx 0 10rpx; }
+  .detail-float .detail-float-share {
+    float: left;
+    margin-left: 40rpx;
+    width: 60rpx;
+    text-align: center;
+    line-height: 1;
+    color: #ff4f64;
+    padding: 0;
+    font-size: 28rpx;
+    background-color: transparent;
+    border: 0; }
+    .detail-float .detail-float-share:after {
+      display: none; }
+    .detail-float .detail-float-share image {
+      width: 45rpx;
+      height: 45rpx;
+      margin: 8rpx 0; }
+  .detail-float .detail-float-btn {
+    float: right;
+    width: 535rpx;
+    line-height: 0;
+    margin-left: 30rpx; }
+    .detail-float .detail-float-btn .iv-btn {
+      padding: 30rpx 0; }
+
+.iv-modal-container .red-packets-wrap {
+  position: absolute;
+  z-index: 110;
+  top: 20%;
+  width: 100%;
+  text-align: center; }
+  .iv-modal-container .red-packets-wrap .red-packets {
+    position: relative;
+    width: 281px;
+    height: 352px;
+    margin: 0 auto; }
+    .iv-modal-container .red-packets-wrap .red-packets .icon-small {
+      position: absolute;
+      top: -50rpx;
+      right: -50rpx; }
+    .iv-modal-container .red-packets-wrap .red-packets .red-packets-img {
+      width: 281px;
+      height: 352px; }
+    .iv-modal-container .red-packets-wrap .red-packets .red-packets-title {
+      position: absolute;
+      color: #fff;
+      font-size: 40rpx;
+      width: 100%;
+      top: 60px;
+      font-weight: bold; }
+    .iv-modal-container .red-packets-wrap .red-packets .red-packets-con {
+      position: absolute;
+      color: #fff;
+      font-size: 36rpx;
+      width: 100%;
+      top: 117px;
+      font-weight: bold; }
+    .iv-modal-container .red-packets-wrap .red-packets .red-packets-pice {
+      position: absolute;
+      color: #A648BC;
+      font-size: 32rpx;
+      width: 100%;
+      top: 204px;
+      font-weight: bold; }
+
+.ico {
+  width: 14px;
+  height: 14px;
+  position: relative;
+  top: -2px;
+  margin-right: 10rpx; }
+  .ico.ico-title {
+    width: 16px;
+    height: 16px;
+    top: 3px;
+    margin-right: 10rpx; }
+  .ico.ico-delivery {
+    width: 35rpx;
+    height: 35rpx;
+    margin-right: 16rpx;
+    top: 2px; }
+  .ico.ico-city {
+    width: 12px; }
+  .ico.ico-edu {
+    width: 18px; }
+  .ico.ico-addr {
+    width: 14px; }
+
+.mes-text {
+  text-align: left;
+  font-size: 24rpx; }

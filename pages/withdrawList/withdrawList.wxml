@@ -1,0 +1,21 @@
+<view class="withdraw-list" wx:if="{{searchResult.length>0}}">
+
+  <block wx:for="{{searchResult}}" wx:key="{{item.id}}">
+    <view class="withdraw-item" data-detail-data="{{item}}" bindtap="withdrawDetail">
+      <view class="withdraw-row iv-font32rpx">
+        <text>{{item.status==0?'提现申请中':item.status==1?'提现成功':'提现失败'}}</text>
+        <text class="iv-color-red iv-text-bold">{{item.gold}}.00元</text>
+      </view>
+      <view class="withdraw-row iv-mt10rpx">
+        <text class="iv-color-999 iv-font28rpx">{{item.creatTime}}</text>
+      </view>
+    </view>
+  </block>
+  <text class="iv-flex-justify-cen iv-color-999 iv-mt30rpx iv-mb30rpx" wx:if="{{updataEnd}}">我是有底线的</text>
+  <text class="iv-flex-justify-cen iv-color-999 iv-mt30rpx iv-mb30rpx" wx:else="{{updataEnd}}" bindtap="loadMore">点击加载更多</text>
+
+</view>
+<view class="iv-nothing" wx:else>
+  <image class="iv-nothing-img" mode="aspectFit" src="/images/common/nothing.png"></image>
+  <text class="iv-nothing-text">暂无提现记录</text>
+</view>

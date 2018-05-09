@@ -1,0 +1,36 @@
+<view class="search">
+  <form bindreset="clearSearch">
+    <view  class="search-form">
+      <view class="search-form-input">
+        <image class="iv-icon iv-icon-search" mode="aspectFit" src="/images/common/search.png"></image>
+        <input placeholder="输入多个关键字，空格隔开" placeholder-class="placeholder-color" auto-focus value="{{searchText}}" bindinput="searchInput" bindconfirm="search" />
+      </view>
+      <text wx:if="{{searchText==''}}"  class="iv-ml30rpx" bindtap="clearSearch">取消</text>
+      <text wx:else  class="iv-ml30rpx" bindtap="search">完成</text>
+    </view>
+  </form>
+
+</view>
+<view class="position-logs">
+  <view class="logs-title">
+    <text>历史搜索</text>
+    <image class="iv-icon " bindtap="deleteLogs" mode="aspectFit" src="/images/common/delete.png"></image>
+  </view>
+  <view class="logs-list">
+    <block wx:for="{{historyPosi}}" wx:key="{{index}}">
+      <text bindtap="selectLogs" data-value="{{item}}">{{item}}</text>
+    </block>
+
+  </view>
+</view>
+
+<view class="position-logs">
+  <view class="logs-title">
+    <text>热门搜索</text>
+  </view>
+  <view class="logs-list">
+    <block wx:for="{{hotSearch}}" wx:key="{{index}}">
+      <text bindtap="selectLogs" data-select-type="hot" data-value="{{item.jobName}}">{{item.jobName}}</text>
+    </block>
+  </view>
+</view>

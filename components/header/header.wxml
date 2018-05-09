@@ -1,0 +1,7 @@
+<view class="iv-title-wrap">
+	<view class="iv-title-after">
+		<a class="iv-pull-left" bindtap="navigateBack" wx:if="{{backShow}}"></a>
+	</view>
+	<view class="iv-title">{{title}}</view>
+	<view class="iv-title-after"></view>
+</view>

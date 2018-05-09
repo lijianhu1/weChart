@@ -1,0 +1,56 @@
+<!--personal.wxml-->
+<!--<header title="{{title}}"></header>-->
+<view class="iv-container iv-border-top-min iv-pt1">
+	<form class="iv-form" bindsubmit="formSubmit">
+		<view class="iv-bg-white iv-pl40 iv-pr40">
+			<view class="iv-form-itam">
+				<view class="iv-item-title">期望职位</view>
+				<!--<picker class="iv-item-input" name="jobTitle" bindchange="bindSexChange" value="{{jobTitle}}" range="{{sexAll}}" range-key="value">
+					<input class="iv-item-input iv-more" value="{{sexAll[formInfo.jobTitle].value}}" disabled  placeholder="请选择"/>
+			 	</picker>-->
+	   			<!--<input class="iv-item-input iv-more" value="{{formInfo.jobTitle}}" bindtap="jobTitleChange" disabled placeholder="请选择"/>-->
+				<!--<navigator url="../check/check?pageForm=resumeExpect&dataStatus=job&formKey=jobTitle&formData={{jobTitle.str}}" open-type="navigate">
+		        </navigator>-->
+				<navigator hover-class="none" class="iv-item-input iv-more" url="../check/check?pageForm=resumeExpect&dataStatus=job&formKey=jobTitle{{jobTitle.str?('&formData='+jobTitle.str):''}}" bindtap="jobTitleChange" open-type="navigate">
+		        	<input value="{{formInfo.jobTitle}}" disabled placeholder="请选择"/>
+		        </navigator>
+			</view>
+			<view class="iv-form-itam">
+				<view class="iv-item-title">期望城市</view>
+				<picker class="iv-item-input" name="expectCity" mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{formInfo.expectCity}}" range="{{cityArray}}" range-key="value">
+				    <!--<input value="{{formInfo.expectCity[0]!==''?cityArray[0][formInfo.expectCity[0]].value+'，'+cityArray[1][formInfo.expectCity[1]].value:''}}" disabled  placeholder="请选择"/>-->
+					<input value="{{cityName}}" disabled  placeholder="请选择"/>
+				</picker>
+			</view>
+			<view class="iv-form-itam">
+				<view class="iv-item-title">期望行业</view>
+				<!--<picker class="iv-item-input" name="expectIndustry" bindchange="bindJobYearChange" value="{{expectIndustry}}" range="{{yearAll}}" range-key="value">
+					<input value="{{yearAll[formInfo.expectIndustry].value}}" disabled  placeholder="请选择"/>
+			 	</picker>-->
+			 	<!--<input class="iv-item-input iv-more" value="{{sexAll[formInfo.expectIndustry].value}}" disabled  placeholder="请选择"/>-->
+			 	<!--<input class="iv-item-input iv-more" value="{{formInfo.expectIndustry}}" bindtap="expectIndustryChange" disabled  placeholder="请选择"/>-->
+			 	<!--<navigator class="iv-item-input iv-more" url="../check/check?pageForm=resumeExpect&dataStatus=industry&formKey=expectIndustry&formData={{expectIndustry.str}}" open-type="navigate">
+		   			<input value="{{formInfo.expectIndustry}}" disabled  placeholder="请选择"/>
+		        </navigator>-->
+		        <navigator hover-class="none" class="iv-item-input iv-more" url="../check/check?pageForm=resumeExpect&dataStatus=industry&formKey=expectIndustry{{expectIndustry.str?('&formData='+expectIndustry.str):''}}" bindtap="jobTitleChange" open-type="navigate">
+		        	<input value="{{formInfo.expectIndustry}}" bindtap="expectIndustryChange" disabled  placeholder="请选择"/>
+		        </navigator>
+			</view>
+			<view class="iv-form-itam">
+				<view class="iv-item-title">工作性质</view>
+				<picker class="iv-item-input" name="expectWorkType" bindchange="bindWorkTypeChange" value="{{formInfo.expectWorkType}}" range="{{workTypeArr}}" range-key="value">
+					<input value="{{workTypeArr[formInfo.expectWorkType].value}}" disabled  placeholder="请选择"/>
+			 	</picker>
+			</view>
+			<view class="iv-form-itam">
+				<view class="iv-item-title">期望月薪</view>
+				<picker class="iv-item-input" name="expectSalary" bindchange="bindSalaryChange" value="{{formInfo.expectSalary}}" range="{{salaryArr}}" range-key="value">
+			  		<input value="{{salaryArr[formInfo.expectSalary].value}}" disabled  placeholder="请选择"/>
+			 	</picker>
+			</view>
+		</view>
+		<view class="iv-mt15 iv-pl40 iv-pr40">
+		    <button type="warn" formType="submit" class="iv-btn iv-btn-red iv-border-radius-100"> 保 存 </button>
+		</view>
+	</form>
+</view>

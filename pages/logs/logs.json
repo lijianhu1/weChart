@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "查看启动日志",
+	"navigationBarTextStyle": "black",
+	"navigationBarBackgroundColor": "#fff",
+	"usingComponents": {
+		"login-template": "/components/login/login"
+	}
+}

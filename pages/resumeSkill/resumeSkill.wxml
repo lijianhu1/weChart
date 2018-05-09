@@ -1,0 +1,22 @@
+<!--personal.wxml-->
+<!--<header title="{{title}}"></header>-->
+<view class="iv-container iv-border-top-min iv-pt1">
+	<form class="iv-form" bindsubmit="formSubmit">
+		<view class="iv-bg-white iv-pl40 iv-pr40">
+			<view class="iv-form-itam">
+				<view class="iv-item-title">技能名称</view>
+				<input class="iv-item-input" name="skillName" value="{{formInfo.skillName}}"  placeholder="请填写"/>
+			</view>
+			<view class="iv-form-itam">
+				<view class="iv-item-title">熟练程度</view>
+				<picker class="iv-item-input" name="masterDegree" bindchange="masterDegreeChange" value="{{formInfo.masterDegree}}" range="{{getProficiency}}" range-key="value">
+					<input value="{{getProficiency[formInfo.masterDegree].value}}" disabled  placeholder="请选择"/>
+			 	</picker>
+			</view>
+		</view>
+		<view class="iv-mt15 iv-pl40 iv-pr40">
+		    <button type="warn" formType="submit" class="iv-btn iv-btn-red iv-border-radius-100"> 保 存 </button>
+		</view>
+		<view class="iv-mt15 iv-color-red iv-text-center" wx:if="{{itemId}}" bindtap="formDelete">删除此掌握技能</view>
+	</form>
+</view>

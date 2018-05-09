@@ -1,0 +1,66 @@
+@import "../../utils/scss/base_variable";
+.iv-modal-container {
+    position: fixed;
+    z-index: 99;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    font-size: 36rpx;
+    .iv-modal-bg{
+        background:rgba(0,0,0,.5);
+        z-index: 100;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right:0;
+        left: 0;
+    }
+    .iv-modal-wrap{
+        position: absolute;
+        z-index: 110;
+        display: flex;
+        width:100%;
+        //top:40%;
+        height: 100%;
+        align-items: center;
+        justify-content: center;
+        .iv-modal-con{
+            background: #fff;
+            width: 80%;
+            border-radius: 10rpx;
+            padding:30rpx 20rpx 10rpx;
+            .iv-modal-title{
+                text-align: center;
+            }
+            .iv-modal-message{
+                border-bottom: 1px solid $g_borderColor;
+                text-align: center;
+                padding-bottom:40rpx;
+                padding-top:30rpx;
+            }
+            .iv-modal-btn{
+                display: flex;
+                width: 100%;
+                text{
+                    text-align: center;
+                    flex: 1;
+                    position: relative;
+                    padding:30rpx 0;
+                    &:after{
+                        content: '|';
+                        color: $g_greyColor;
+                        position: absolute;
+                        right:0;
+                    }
+                    &:last-child:after{
+                        content: normal;
+                    }
+                    &.active{
+                        color: $g_redColor;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,36 @@
+<view class="top">
+  <text>当前余额</text>
+  <view class="iv-flex">
+    <text class="iv-mt30rpx iv-text-bold">￥</text>
+    <text class="money">{{totalGold||0}}</text>
+  </view>
+</view>
+<view class="withdraw-list">
+  <text class="iv-font36rpx">提现金额</text>
+  <view class="iv-flex iv-mt30rpx">
+    <view class="{{(!others)&&gold==20?'withdraw-item active':'withdraw-item'}}" data-gold="20" bindtap="goldChange">
+      <text>20金币</text>
+      <text  class="iv-font24rpx iv-mt5rpx">1 ivva金币 = 1元</text>
+    </view>
+    <view class="{{(!others)&&gold==50?'withdraw-item active':'withdraw-item'}}" data-gold="50" bindtap="goldChange">
+      <text>50金币</text>
+      <text class="iv-font24rpx iv-mt5rpx">1 ivva金币 = 1元</text>
+    </view>
+    <!--<view class="{{gold==100?'withdraw-item active':'withdraw-item'}}" data-gold="100" bindtap="goldChange">-->
+      <!--<text>100金币</text>-->
+      <!--<text class="iv-font24rpx iv-mt5rpx">1 ivva金币 = 1元</text>-->
+    <!--</view>-->
+    <view class="{{others?'withdraw-item active':'withdraw-item'}}" data-gold="0" bindtap="otherGold">
+      <input wx:if="{{others}}" class="other" bindinput="otherInput" value="{{gold}}" maxlength="4" focus="true" type="number" placeholder-class="iv-color-fff iv-font28rpx" placeholder="请输入金币数" />
+        <text wx:if="{{!others}}">其他金币</text>
+        <text wx:if="{{!others}}" class="iv-font24rpx iv-mt5rpx">1 ivva金币 = 1元</text>
+    </view>
+
+  </view>
+</view>
+
+
+<view class="withdraw-btn iv-mt100rpx">
+  <button type="primary" disabled="{{!gold||disabled}}" bindtap="withdraw"> 立即提现 </button>
+  <navigator url="/pages/withdrawList/withdrawList" class="withdrawlist-nav">提现记录</navigator>
+</view>

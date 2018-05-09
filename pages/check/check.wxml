@@ -1,0 +1,39 @@
+<!--<header title="{{title}}"></header>-->
+<view class="iv-container iv-choice-body">
+	<view class="choice-wrap"  wx:if="{{choiceList.length}}">
+		<view class="choice-con">
+			<view class="choice-item" wx:for="{{choiceList}}" wx:key="unique" wx:for-item="item">
+				<view class="choice-close" bindtap="closeList" wx:for-index="index" id="{{index}}">×</view>
+				{{item.value}}
+			</view>
+		</view>
+		<view class="choice-btn" bindtap="submitChoice">完成</view>
+	</view>
+	<view>
+		<view class="list-wrap" wx:for="{{sltList}}" wx:key="unique" wx:for-item="item">
+			<view class="title {{item.open ? 'title-open' : ''}}" id="{{item.id}}" bindtap="listOpen" data-open="{{item.open}}" wx:for-index="index">{{item.value}}</view>
+			<!--<view>
+				<view wx:for="{{item.childList}}" wx:key="unique" wx:for-item="item1">
+					<view bindtap="sltClick" data-id="{{item1.id}}">{{item1.value}}</view>
+				</view>
+			</view>-->
+			<view class="list-item-bd {{item.open ? 'list-item-bd-show' : ''}}">
+				<view class="list-item-box {{item.open ? 'list-item-box-show' : ''}}">
+					<block wx:for-items="{{item.children}}" wx:for-item="item1" wx:key="*item">
+						<!--<view class="list-text">{{item1.value}}</view>-->
+						<view class="list-text">
+							<checkbox-group bindchange="sltClick" wx:for-index="index" value="{{item1.value}}" id="{{index}}">
+								<label class="checkbox">
+						        	<checkbox value="slt" checked="{{item1.checked}}"/>{{item1.value}}
+						      	</label>
+							</checkbox-group>
+						</view>
+					</block>
+					<!--<block wx:for-items="item1" wx:for-item="{{item.childList}}" wx:key="*item">
+						<view class="list-text">{{item1.value}}</view>
+					</block>-->
+				</view>
+			</view>
+		</view>
+	</view>
+</view>

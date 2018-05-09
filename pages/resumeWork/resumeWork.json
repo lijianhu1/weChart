@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "工作经历",
+	"navigationBarTextStyle": "black",
+	"navigationBarBackgroundColor": "#fff",
+	"usingComponents": {
+		"header": "/components/header/header",
+		"datepick-template": "/components/datepick/datepick"
+	}
+}

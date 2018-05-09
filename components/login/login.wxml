@@ -1,0 +1,21 @@
+<!--<template name="loginTemplate">-->
+  <view class="login-modal" wx:if="{{loginDialog.show}}" catchtouchmove="true">
+    <view class="flex-box">
+      <view class="login-wrap">
+        <image class=" login-close " bindtap="_closeBtn" mode="widthFix" src="/images/common/close.png"></image>
+        <text class="login-title">{{title}}</text>
+        <!--<button class="login-wechat" type="primary"  bindtap="loginWechat"> {{buttonText1}} </button>-->
+        <button type="primary" class="login-wechat" hover-class="none" open-type="getPhoneNumber" bindgetphonenumber="_getPhoneNumber">
+          <image  class="iv-icon iv-icon-wx" mode="aspectFit" src="/images/common/wx.png"></image>
+          {{buttonText1}}
+        </button>
+        <button class="login-tel iv-mt20rpx" hover-class="none" bindtap="_loginTel">
+          <image  class="iv-icon" mode="aspectFit" src="/images/common/phone.png"></image>
+          {{buttonText2}}
+        </button>
+      </view>
+    </view>
+  </view>
+
+
+<!--</template>-->

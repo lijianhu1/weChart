@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "login-template": "/components/login/login",
+    "ec-canvas": "../../components/ec-canvas/ec-canvas"
+  },
+  "navigationBarTitleText": "钱包"
+}

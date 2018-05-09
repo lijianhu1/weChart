@@ -1,0 +1,144 @@
+@charset "UTF-8";
+
+/* CSS Document */
+
+@import "../../utils/scss/base_variable";
+page{
+  background: #fff;
+}
+.page-bg{
+  background: #f7f9f8;
+  padding-top:10rpx;
+}
+.company-top{
+  padding:30rpx 5%;
+  display: flex;
+  background: #fff;
+  justify-content: space-between;
+  align-items: center;
+  .logo{
+    width: 100rpx;
+    height: 100rpx;
+    border-radius: 50%;
+  }
+  .info{
+    .company-name{
+      font-weight: bold;
+      font-size:32rpx;
+    }
+    .company-other{
+      font-size:28rpx;
+      margin-top: 10rpx;
+      text{
+        &:after{
+          content: '|';
+          color: $g_borderColor;
+          margin:0 10rpx;
+        }
+        &:last-child:after{
+          content: '';
+        }
+      }
+    }
+  }
+}
+.company-con{
+  background: #fff;
+  margin-top: 20rpx;
+  padding:0 5% 30rpx;
+  .company-tab-nav{
+    display: flex;
+    border-bottom: 1rpx solid $g_borderColor;
+    font-size:32rpx;
+    text{
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      margin: 20rpx 0;
+      &:first-child{
+        border-right: 1rpx solid $g_borderColor;
+      }
+      &.active{
+        color: $g_redColor;
+      }
+    }
+  }
+  .company-tab-page{
+    .company-tab-list{
+      .company-title{
+        display: flex;
+        justify-content: center;
+        font-size:36rpx;
+        margin:50rpx 0;
+        position: relative;
+        &:before{
+          content: '';
+          position: absolute;
+          width: 20%;
+          height: 1px;
+          background: $g_borderColor;
+          left: 10%;
+          top: 50%;
+        }
+        &:after{
+          content: '';
+          position: absolute;
+          width: 20%;
+          height: 1px;
+          background: $g_borderColor;
+          right: 10%;
+          top: 50%;
+        }
+      }
+      .company-info{
+        text{
+          font-size: 30rpx;
+          display: flex;
+          &.cover{
+            height:200rpx;
+            overflow-y: hidden;
+          }
+        }
+        .toggle{
+          width: 50rpx;
+          margin:20rpx auto;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          .iv-icon{
+            width:24rpx;
+          }
+        }
+      }
+    }
+    .position-item{
+      border-bottom: 1rpx solid $g_borderColor;
+      .job-item{
+        display: flex;
+        justify-content: space-between;
+        margin:20rpx 0;
+        .job-salary{
+          color: $g_redColor;
+          font-size: 28rpx;
+        }
+        .job-other{
+          font-size:28rpx;
+          color: #999;
+          text{
+            &:after{
+              content: '/';
+              margin:0 5rpx;
+            }
+            &:last-child:after{
+              content: '';
+            }
+          }
+        }
+        .job-date{
+          color: #999;
+          font-size: 28rpx;
+        }
+      }
+    }
+  }
+}

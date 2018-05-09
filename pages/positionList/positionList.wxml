@@ -1,0 +1,217 @@
+<view class="position-fixed">
+  <view class="search">
+    <view class="search-wrap">
+      <image class="iv-icon iv-icon-search" mode="aspectFit" src="/images/common/search.png"></image>
+      <input placeholder="输入多个关键字，空格隔开"  value="{{searchCondition.keyWord}}" bindconfirm="submitSearch" bindinput="keyWordInput" />
+    </view>
+  </view>
+  <view class="search-nav">
+    <view class="{{navType=='1'?'active nav-item':'nav-item'}}">
+      <view data-nav-type="1" class="nav-text" wx:if="{{cityName}}" bindtap="navChange">{{cityName}}
+        <image wx:if="{{navType==1}}" class="iv-icon iv-icon-arrow_down" mode="widthFix" src="/images/common/arrow_down_sel.png"></image>
+        <image wx:else class="iv-icon iv-icon-arrow_down" mode="widthFix" src="/images/common/arrow_down.png"></image>
+      </view>
+      <view data-nav-type="1" class="nav-text" wx:if="{{!cityName}}" bindtap="navChange">
+        城市
+        <image wx:if="{{navType==1}}" class="iv-icon iv-icon-arrow_down" mode="widthFix" src="/images/common/arrow_down_sel.png"></image>
+        <image wx:else class="iv-icon iv-icon-arrow_down" mode="widthFix" src="/images/common/arrow_down.png"></image>
+      </view>
+    </view>
+    <view class="{{navType=='2'?'active nav-item':'nav-item'}}">
+      <view data-nav-type="2" bindtap="navChange" class="nav-text">
+        职位
+        <image wx:if="{{navType==2}}" class="iv-icon iv-icon-arrow_down" mode="widthFix" src="/images/common/arrow_down_sel.png"></image>
+        <image wx:else class="iv-icon iv-icon-arrow_down" mode="widthFix" src="/images/common/arrow_down.png"></image>
+      </view>
+    </view>
+    <view class="{{navType=='3'?'active nav-item':'nav-item'}}">
+      <view data-nav-type="3" bindtap="navChange" class="nav-text">
+        公司
+        <image wx:if="{{navType==3}}" class="iv-icon iv-icon-arrow_down" mode="widthFix" src="/images/common/arrow_down_sel.png"></image>
+        <image wx:else class="iv-icon iv-icon-arrow_down" mode="widthFix" src="/images/common/arrow_down.png"></image>
+      </view>
+    </view>
+    <view class="{{navType=='4'?'active nav-item':'nav-item'}}">
+      <view data-nav-type="4" bindtap="navChange" class="nav-text">
+        {{searchCondition.recommendJob==1?'推荐':'最新'}}
+        <image wx:if="{{navType==4}}" class="iv-icon iv-icon-arrow_down" mode="widthFix" src="/images/common/arrow_down_sel.png"></image>
+        <image wx:else class="iv-icon iv-icon-arrow_down" mode="widthFix" src="/images/common/arrow_down.png"></image>
+      </view>
+    </view>
+  </view>
+</view>
+
+
+<scroll-view class="position-list" scroll-y="{{!showModal}}" wx:if="{{searchResult.length>0}}">
+  <block wx:for="{{searchResult}}" wx:key="{{index}}">
+    <view class="{{item.jobGold!='0.00'?'position-item':'position-item mod'}}"  bindtap="getPositionDetail" data-user-id="{{item.compUserId}}" data-position-id="{{item.positionId}}">
+      <view class="item">
+        <image lazy-load="true" wx:if="{{item.compLogoName}}" src="{{'https://www.yifengjianli.com/download/getCompanyIcon/companyLogo/'+item.compLogoName+'?time='+getTime}}" class="item-avatr" mode="aspectFit"></image>
+        <image wx:else src="/images/common/company_default.png" class="item-avatr" mode="widthFix"></image>
+        <view class="item-con">
+          <view class="{{(item.isDelivery>0)?'item-title isDelivery':'item-title'}}">
+            <view class="iv-flex">
+              <text class="jobName iv-font32rpx">{{item.jobTitle}}</text>
+              <text wx:if="{{item.jobGold=='0.00'&&item.isDelivery>0}}" class="deliveryed">（已投递）</text>
+            </view>
+            <text class="iv-ml10rpx  salary">{{item.salaryFrom}}-{{item.salaryTo}} k</text>
+          </view>
+          <view class="item-company">
+            <text>{{item.compName}}</text>
+          </view>
+          <view class="item-other iv-color-999">
+            <view class="iv-flex-align-cen">
+              <text class="item-other-text city">{{item.workCity}}</text>
+              <text class="item-other-text job-year">{{item.jobYear}}</text>
+              <text class="item-other-text">{{item.education}}</text>
+            </view>
+            <view class="w140rpx" wx:if="{{item.jobGold=='0.00'}}">{{item.postDate}}</view>
+          </view>
+          <view>
+
+          </view>
+        </view>
+      </view>
+      <view class="receive" wx:if="{{item.jobGold!='0.00'}}">
+        <text><text class="iv-font30rpx">￥</text> <text class="iv-font40rpx">{{item.jobGold||0}}</text></text>
+        <text class="iv-mt10rpx">{{item.isDelivery>0?'已投递':'立即领取'}}</text>
+      </view>
+    </view>
+  </block>
+  <text class="iv-flex-justify-cen iv-color-999 iv-mt30rpx iv-mb30rpx" wx:if="{{updataEnd}}">我是有底线的</text>
+  <text class="iv-flex-justify-cen iv-color-999 iv-mt30rpx iv-mb30rpx" wx:else="{{updataEnd}}" bindtap="loadMore">点击加载更多</text>
+</scroll-view>
+<view class="iv-nothing" wx:if="{{searchResult.length==0&&!loading}}">
+  <image class="iv-nothing-img" mode="aspectFit" src="/images/common/nothing.png"></image>
+  <text class="iv-nothing-text">暂无匹配记录</text>
+</view>
+<view class="search-condtion" wx:if="{{showModal}}">
+  <view class="search-condtion-wrap">
+    <view wx:if="{{navType==1&&!showArea}}" class="city-list">
+      <view class="city-item province">
+        <scroll-view scroll-y style="max-height: 900rpx;" >
+            <block wx:for="{{provinceList}}" wx:key="item.id">
+              <text class="{{provinceId==item.id?'active':''}}" data-children="{{item.childList}}" data-id="{{item.id}}" data-name="{{item.value}}" data-level="1"  bindtap="cityChange">{{item.value}}</text>
+            </block>
+        </scroll-view>
+      </view>
+      <view class="city-item city">
+        <scroll-view scroll-y style="max-height: 900rpx;" >
+          <block wx:for="{{cityList}}" wx:key="item.id">
+            <text class="{{cityId==item.id?'active':''}}" data-children="{{item.childList}}" data-id="{{item.id}}" data-level="2" data-name="{{item.value}}"  bindtap="cityChange">{{item.value}}</text>
+          </block>
+        </scroll-view>
+      </view>
+      <!--<view class="city-item area">-->
+        <!--<scroll-view scroll-y style="max-height: 700rpx;"  bindscroll="scroll" >-->
+          <!--<block wx:for="{{areaList}}" wx:key="item.id">-->
+            <!--<text class="{{areaId==item.id?'active':''}}" data-children="{{item.childList}}" data-id="{{item.id}}" data-level="3"  bindtap="cityChange">{{item.value}}</text>-->
+          <!--</block>-->
+        <!--</scroll-view>-->
+      <!--</view>-->
+    </view>
+    <view wx:if="{{navType==1&&showArea}}" class="condtion-list">
+      <view class="contion-item">
+        <!--<text class="contion-item-title">{{cityName}}</text>-->
+        <scroll-view scroll-y style="max-height: 600rpx;" class="iv-mb30rpx">
+          <view class="item">
+            <text class="{{areaId==''?'active':''}}" data-id="" data-level="3" bindtap="cityChange">全部</text>
+              <block wx:for="{{areaList}}" wx:key="item.id">
+                <text class="{{areaId==item.id?'active':''}}" data-id="{{item.id}}" data-level="3" bindtap="cityChange">{{item.value}}</text>
+              </block>
+          </view>
+        </scroll-view>
+        <view class="switch">
+          <image bindtap="switchCity" class="iv-icon" mode="widthFix" src="/images/position/switch.png"></image>
+          <text bindtap="switchCity">切换城市</text>
+        </view>
+      </view>
+    </view>
+    <view wx:if="{{navType==2}}" class="condtion-list">
+      <view class="contion-item">
+        <scroll-view scroll-y style="max-height: 600rpx;" class="iv-mb30rpx">
+          <view class="contion-section">
+            <text class="contion-item-title">月薪范围</text>
+            <view class="item">
+              <block wx:for="{{salaryList}}" wx:key="item.id">
+                <text class="{{searchCondition.salaryRange==item.id?'active':''}}" data-id="{{item.id}}" data-condi-type="salaryRange" bindtap="conditionChange">{{item.value}}</text>
+              </block>
+            </view>
+          </view>
+          <view class="iv-mt30rpx contion-section">
+              <text class="contion-item-title">工作经验</text>
+              <view class="item">
+                <block wx:for="{{jobYearList}}" wx:key="item.id">
+                  <text class="{{searchCondition.jobYear==item.id?'active':''}}" data-id="{{item.id}}" data-condi-type="jobYear" bindtap="conditionChange">{{item.value}}</text>
+                </block>
+              </view>
+          </view>
+          <view class="iv-mt30rpx">
+            <text class="contion-item-title">学历</text>
+            <view class="item">
+              <block wx:for="{{educationList}}" wx:key="item.id">
+                <text class="{{searchCondition.education==item.id?'active':''}}" data-id="{{item.id}}" data-condi-type="education" bindtap="conditionChange">{{item.value}}</text>
+              </block>
+            </view>
+          </view>
+          <view class="iv-mt30rpx">
+            <text class="contion-item-title">工作类型</text>
+            <view class="item">
+              <block wx:for="{{jobTypeList}}" wx:key="item.id">
+                <text class="{{searchCondition.jobType==item.id?'active':''}}" data-id="{{item.id}}" data-condi-type="jobType" bindtap="conditionChange">{{item.value}}</text>
+              </block>
+            </view>
+          </view>
+        </scroll-view>
+      </view>
+    </view>
+    <view wx:if="{{navType==3}}" class="condtion-list">
+      <view class="contion-item">
+        <scroll-view scroll-y style="max-height: 600rpx;" class="iv-mb30rpx">
+          <view>
+            <text class="contion-item-title">公司性质</text>
+            <view class="item">
+              <block wx:for="{{compNatureList}}" wx:key="item.id">
+                <text class="{{searchCondition.compNature==item.id?'active':''}}" data-id="{{item.id}}" data-condi-type="compNature" bindtap="conditionChange">{{item.value}}</text>
+              </block>
+            </view>
+          </view>
+          <view class="iv-mt30rpx">
+            <text class="contion-item-title">公司规模</text>
+            <view class="item">
+              <block wx:for="{{compSizeList}}" wx:key="item.id">
+                <text class="{{searchCondition.compSize==item.id?'active':''}}" data-id="{{item.id}}" data-condi-type="compSize" bindtap="conditionChange">{{item.value}}</text>
+              </block>
+            </view>
+          </view>
+          <view class="iv-mt30rpx">
+            <text class="contion-item-title">发布日期</text>
+            <view class="item">
+              <block wx:for="{{releaseDateList}}" wx:key="item.id">
+                <text class="{{searchCondition.releaseDate==item.id?'active':''}}" data-id="{{item.id}}" data-condi-type="releaseDate" bindtap="conditionChange">{{item.value}}</text>
+              </block>
+            </view>
+          </view>
+        </scroll-view>
+      </view>
+    </view>
+    <view wx:if="{{navType==4}}" class="condtion-list">
+      <div class="contion-item">
+        <view class="posi-type">
+          <view class="{{searchCondition.recommendJob==1?'posi-type-item active':'posi-type-item'}}" data-position-type="1" bindtap="posiTypeChange">
+            推荐的职位
+            <image wx:if="{{searchCondition.recommendJob==1}}" class="iv-icon iv-ml20rpx" mode="widthFix" src="/images/position/gou.png"></image>
+          </view>
+          <view class="{{searchCondition.recommendJob==0?'posi-type-item active':'posi-type-item'}}" data-position-type="0" bindtap="posiTypeChange">
+            最新的职位
+            <image wx:if="{{searchCondition.recommendJob==0}}" class="iv-icon iv-ml20rpx" mode="widthFix" src="/images/position/gou.png"></image>
+          </view>
+        </view>
+      </div>
+    </view>
+    <view class="submitSearch" wx:if="{{navType==2||navType==3}}">
+      <button type="warn" class="iv-btn iv-btn-red" data-serach-type='city' bindtap="submitSearch"> 确 定 </button>
+    </view>
+  </view>
+  <view class="search-condtion-bg" bindtap="hideModal"></view>
+</view>

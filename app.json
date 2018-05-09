@@ -1,0 +1,54 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/positionDetail/positionDetail",
+    "pages/user/user",
+    "pages/companyInfo/companyInfo",
+    "pages/withdraw/withdraw",
+    "pages/search/search",
+    "pages/register/register",
+    "pages/login/login",
+    "pages/logs/logs",
+    "pages/blankTemplate/blankTemplate",
+    "pages/resume/resume",
+    "pages/positionList/positionList",
+    "pages/resumeBasic/resumeBasic",
+    "pages/resumeExpect/resumeExpect",
+    "pages/resumeEducation/resumeEducation",
+    "pages/resumeWork/resumeWork",
+    "pages/resumeProject/resumeProject",
+    "pages/resumeSkill/resumeSkill",
+    "pages/resumeEvaluation/resumeEvaluation",
+    "pages/check/check",
+    "pages/modifyTelphone/modifyTelphone",
+    "pages/protocol/protocol",
+    "pages/withdrawList/withdrawList",
+    "pages/orderDetail/orderDetail"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "backgroundColor": "#f7f9f8",
+    "navigationBarTitleText": "ivva",
+    "navigationBarTextStyle": "black",
+    "navigationBarBackgroundColor": "#ffffff"
+  },
+  "tabBar": {
+    "color": "#929292",
+    "selectedColor": "#ff4f64",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "images/common/index.png",
+        "selectedIconPath": "images/common/index_sel.png",
+        "text": "职位"
+      },
+      {
+        "pagePath": "pages/user/user",
+        "iconPath": "images/common/user.png",
+        "selectedIconPath": "images/common/user_sel.png",
+        "text": "钱包"
+      }
+    ]
+  }
+}

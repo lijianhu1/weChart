@@ -1,0 +1,53 @@
+.login-modal{
+  position: fixed;
+  z-index: 9999;
+  background: rgba(0,0,0,.6);
+  top: 0;
+  left: 0;
+  bottom:0;
+  right: 0;
+  .flex-box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+  .login-wrap{
+    width: 80%;
+    background: #fff;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding:20rpx 20rpx 60rpx 20rpx;
+    .login-title{
+      margin:40rpx 0 60rpx;
+      font-size:36rpx;
+    }
+    button{
+      width:90%;
+      margin:10rpx;
+      font-size:30rpx;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-top: 10rpx;
+      padding-bottom:10rpx;
+      .iv-icon{
+        display: inline-block;
+        width: 44rpx;
+        height: 44rpx;
+        margin-right:30rpx;
+        &.iv-icon-wx{
+          width:50rpx;
+          height: 50rpx;
+        }
+      }
+    }
+    .login-close{
+      width:40rpx;
+      align-self: flex-end;
+    }
+  }
+}

@@ -1,0 +1,13 @@
+<!--<template name="loginTemplate">-->
+  <view class="datepick" >
+    <picker mode="multiSelector" class="iv-item-input" bindchange="_pickerChange" bindcolumnchange="_pickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
+      <!--<view class="picker">-->
+        <!--{{dateValue==0?'至今':dateValue}}-->
+       <!--&lt;!&ndash;{{multiArray[0][multiIndex[0]]}}，{{multiArray[1][multiIndex[1]]}}，{{multiArray[2][multiIndex[2]]}}&ndash;&gt;-->
+      <!--</view>-->
+      <input placeholder="请选择"  disabled value="{{dateValue==='0'?'至今':dateValue}}" />
+    </picker>
+  </view>
+
+
+<!--</template>-->

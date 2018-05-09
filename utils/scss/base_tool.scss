@@ -1,0 +1,202 @@
+@charset "utf-8";
+@import "./base_variable";
+/*全局样式*/
+%basefontStyle{
+    font-family:arial,'微软雅黑','\5FAE\8F6F\96C5\9ED1','微软雅黑';
+}
+
+%clearfix{
+    zoom:1;
+    &:after{
+        content:"";
+        display:block;
+        clear:both; 
+    }
+}
+
+%iconfont {
+  font-family:"iconfont" !important;
+  font-size:16px;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  
+}
+
+%borderGrey{
+    border: 1px solid #CCCCCC;
+}
+
+%opacityBg{
+	background:rgba(55,86,123,0.7)!important;
+  //  filter:Alpha(opacity=70);
+	background:#37567b;	//　使用IE专属滤镜实现IE背景透明
+}
+
+//三角形
+@mixin triangle($direction, $size, $borderColor ) {
+    content:"";
+    height: 0;
+    width: 0;
+    
+    @if $direction == top {
+        border-bottom:$size solid $borderColor;
+        border-left:$size dashed transparent;
+        border-right:$size dashed transparent;
+    } 
+    @else if $direction == right {
+        border-left:$size solid $borderColor;
+        border-top:$size dashed transparent;
+        border-bottom:$size dashed transparent;
+    } 
+    @else if $direction == bottom {
+        border-top:$size solid $borderColor;
+        border-left:$size dashed transparent;
+        border-right:$size dashed transparent;
+    } 
+    @else if $direction == left {
+        border-right:$size solid $borderColor;
+        border-top:$size dashed transparent;
+        border-bottom:$size dashed transparent;
+    }
+
+}
+
+//行高居中
+@mixin lineMiddle($height) {
+    height: $height;
+    line-height: $height;
+}
+
+//同级第一个兄弟节点以外
+@mixin notFirst($select, $property, $value){
+    @at-root  #{$select} {
+        #{$property}: $value;
+        &:first-child{
+            #{$property}:0;
+        }
+    }
+}
+
+//字体超出隐藏
+%textTruncate{
+	word-wrap: normal;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+/*透明度*/
+@mixin opacity($opacity:0.8) {
+    opacity: $opacity;
+    filter: alpha(opacity=$opacity*100);
+}
+
+//上下左右居中
+@mixin positionMiddle($tempWidth:300px, $tempHeight:150px){
+	position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-left: - $tempWidth/2;
+    margin-top: - $tempHeight/2;
+    min-width: $tempWidth;
+    width: $tempWidth;
+    min-height: $tempHeight;
+}
+
+/*modal-close*/
+@mixin modalClose($tempWidth:40px) {
+    height: $tempWidth;
+    width: $tempWidth;
+    position: absolute;
+    border-radius: 50%;
+    right: - $tempWidth/2;
+    top: - $tempWidth/2;
+    line-height: $tempWidth;
+    text-align: center;
+    cursor: pointer;
+    
+    &:after{
+    	content: 'x';
+    	font-size: $tempWidth/1.5;
+	    font-style: normal;
+    }
+}
+
+
+//妹子UI中的按钮
+%hima-am-btn{
+	display: inline-block;
+    margin-bottom: 0;
+    padding: .5em 1em;
+    font-size: 1.6rem;
+    font-weight: 400;
+    line-height: 1.2;
+    text-align: center;
+    white-space: nowrap;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 0;
+    cursor: pointer;
+    outline: 0;
+    user-select: none;
+    vertical-align: middle;
+    transition: background-color .3s ease-out,border-color .3s ease-out;
+}
+
+%hima-am-btn-primary{
+    color: #fff;
+    background-color: #0e90d2;
+    border-color: #0e90d2;
+    
+    &:hover{
+    	background-color: #0c79b1;
+    	color: #fff;
+    	border-color: #0a6999;
+    }
+}
+%hima-am-btn-sm {
+    font-size: 1.4rem;
+}
+
+//细线
+%minBorderTop {
+    position: relative;
+    &:before{
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        height: 1px;
+        transform: scaleY(.5);
+        background-color: $g_borderColor;
+    }
+}
+%minBorderBottom {
+    position: relative;
+    &:after{
+        content: '';
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        height: 1px;
+        transform: scaleY(.5);
+        background-color: $g_borderColor;
+    }
+}
+%minBorderLeft {
+    position: relative;
+    &:after{
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        top:0;
+        width: 1px;
+        //transform: scaleX(.5);
+        background-color: #333;
+        z-index:10;
+    }
+}

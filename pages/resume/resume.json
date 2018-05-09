@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "简历详情",
+	"navigationBarTextStyle": "black",
+	"navigationBarBackgroundColor": "#ffffff",
+	"usingComponents": {
+		"header": "/components/header/header"
+	}
+}

@@ -1,0 +1,55 @@
+<!--personal.wxml-->
+<header title="{{title}}"></header>
+<view class="container iv-border-bottom-min">
+	<form class="iv-form" bindsubmit="basicSubmit">
+		<view class="iv-bg-white iv-pl10 iv-pr10">
+			<view class="iv-form-itam">
+				<view class="iv-item-title">姓名</view>
+				<input class="iv-item-input" name="name" value="{{basicInfo.name}}"  placeholder="请填写"/>
+			</view>
+			<view class="iv-form-itam">
+				<view class="iv-item-title">性别</view>
+				<picker class="iv-item-input" name="sex" bindchange="bindSexChange" value="{{sex}}" range="{{sexAll}}" range-key="value">
+					<input value="{{sexAll[basicInfo.sex].value}}" disabled  placeholder="请选择"/>
+			 	</picker>
+			</view>
+			<view class="iv-form-itam">
+				<view class="iv-item-title">出生年月</view>
+				<picker class="iv-item-input" name="birthday" mode="date" value="{{basicInfo.birthday}}" start="{{birthdayStart}}" end="{{birthdayEnd}}" fields="month" bindchange="bindBirthdayChange">
+				    <input value="{{basicInfo.birthday}}" disabled  placeholder="请选择"/>
+			 	</picker>
+			</view>
+			<view class="iv-form-itam">
+				<view class="iv-item-title">工作年限</view>
+				<picker class="iv-item-input" name="myJobYear" bindchange="bindJobYearChange" value="{{myJobYear}}" range="{{yearAll}}" range-key="value">
+					<input value="{{yearAll[basicInfo.myJobYear].value}}" disabled  placeholder="请选择"/>
+			 	</picker>
+			</view>
+			<view class="iv-form-itam">
+				<view class="iv-item-title">学历</view>
+				<picker class="iv-item-input" name="edu" bindchange="bindEduChange" value="{{edu}}" range="{{eduAll}}" range-key="value">
+			  		<input value="{{eduAll[basicInfo.edu].value}}" disabled  placeholder="请选择"/>
+			 	</picker>
+			</view>
+			<view class="iv-form-itam">
+				<view class="iv-item-title">现居地</view>
+				<picker class="iv-item-input" name="cityIndex" mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{basicInfo.cityIndex}}" range="{{cityArray}}" range-key="value">
+				    <input value="{{basicInfo.cityIndex[0]!==''?cityArray[0][basicInfo.cityIndex[0]].value+'，'+cityArray[1][basicInfo.cityIndex[1]].value:''}}" disabled  placeholder="请选择"/>
+				</picker>
+			</view>
+		</view>
+		<view class="iv-bg-white iv-pl10 iv-pr10 iv-mt15">
+			<view class="iv-form-itam">
+				<view class="iv-item-title">电子邮箱</view>
+				<input class="iv-item-input" name="email" value="{{basicInfo.email}}"  placeholder="请填写"/>
+			</view>
+			<view class="iv-form-itam">
+				<view class="iv-item-title">手机号码</view>
+				<input class="iv-item-input" name="telephone" value="{{basicInfo.telephone}}" type="number" maxlength="11"  placeholder="请填写"/>
+			</view>
+		</view>
+		<view style="margin: 15px;">
+		    <button type="warn" formType="submit">保存</button>
+		</view>
+	</form>
+</view>

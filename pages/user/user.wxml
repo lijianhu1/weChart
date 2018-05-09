@@ -1,0 +1,161 @@
+<view class="userinfo">
+  <view class="info-item" wx:if="{{loginStatus}}">
+      <view class="iv-flex iv-flex-align-cen">
+        <image src="{{avatarUrl}}" class="logo" background-size="cover" mode="aspectFit"></image>
+        <view class="userinfo-text">
+          <view class="iv-flex-align-cen">
+            <text class="iv-font40rpx iv-mb10rpx iv-mr30rpx">{{nickName}}</text>
+            <view bindtap="edit">
+              <image class="iv-icon iv-mr10rpx"  mode="widthFix" src="/images/user/edit.png"></image>
+              编辑
+            </view>
+          </view>
+          <text>简历完善度 <text class="iv-ml10rpx">{{perfect}}%</text></text>
+        </view>
+      </view>
+    <text bindtap="logoutModal">退出</text>
+  </view>
+  <view class="info-item" wx:else>
+    <view class="iv-flex iv-flex-align-cen">
+      <image src="/images/common/user_default.png" bindtap="login" class="logo" mode="aspectFit"></image>
+      <view class="userinfo-text">
+        <text class="iv-font40rpx iv-mb10rpx" bindtap="login">点击登录</text>
+        <text>登陆后填写简历信息</text>
+      </view>
+    </view>
+  </view>
+</view>
+<view class="cart">
+  <view class="cart-box">
+    <view class="iv-flex-justify-sb iv-mb10rpx">
+      <view class="curr-gold">
+        <view class="cart-title">当前余额</view>
+        <text class="iv-ml5rpx">￥</text>
+        <text class="iv-font60rpx iv-text-bold">{{goldData.balance||'00'}}</text>
+      </view>
+        <view class="put-forward" bindtap="withdraw">提现</view>
+
+
+    </view>
+    <view class=" iv-flex-justify-sb iv-mt20rpx">
+      <view class="iv-flex">
+        <view >
+          <text class="cart-title">已累积赚取</text>
+          <text class="iv-ml5rpx">￥</text>
+          <text class="iv-font40rpx iv-text-bold">{{goldData.totalGold||'00'}}</text>
+        </view>
+        <view class="iv-ml80rpx">
+          <text class="cart-title">今日赚取金币</text>
+          <text class="iv-font40rpx iv-text-bold">{{goldData.yesterdayGold||'00'}}</text>
+        </view>
+      </view>
+      <text class="iv-font28rpx" bindtap="withdrawList">提现记录</text>
+    </view>
+    <view class="message">
+      <text>1 ivva金币 = 1元人民币</text>
+    </view>
+  </view>
+</view>
+<view class="chart" hidden="{{chartHidden}}">
+  <view class="chart-title"> <text class="chart-title-icon"></text>过去7日零钱收益</view>
+  <view class="canvas-wrap">
+    <ec-canvas  id="canvas" canvas-id="mychart-line" ec="{{ ec }}"></ec-canvas>
+  </view>
+
+  <!--<canvas hidden="{{chartHidden}}" canvas-id="lineCanvas" disable-scroll="true" class="canvas"></canvas>-->
+</view>
+<view class="tab iv-mt20rpx">
+  <view class="tab-nav">
+    <view class="{{tab==1?'tab-nav-item active':'tab-nav-item'}}" data-tab="1" bindtap="tabFun">主动投递 <text>({{searchResult.delivery.total||0}})</text></view>
+    <view class="{{tab==2?'tab-nav-item active':'tab-nav-item'}}" data-tab="2" bindtap="tabFun">简历被下载 <text>({{searchResult.download.total||0}})</text></view>
+  </view>
+  <view class="tab-page" wx:if="{{tab==1&&searchResult.delivery.resultList.length>0}}">
+    <block wx:for="{{searchResult.delivery.resultList}}" wx:key="{{item.id}}">
+    <view class="position-item"  bindtap="getPositionDetail" data-user-id="{{item.compId}}" data-position-id="{{item.positionId}}">
+      <view class="job-item">
+        <text class="iv-font32rpx" wx:if="{{tab==1}}">{{item.jobName}}</text>
+        <text class="iv-font32rpx" wx:if="{{tab==2}}">{{item.compName}}</text>
+        <text class="job-salary">{{item.symbol==0?'-':item.symbol==1?'+':''}}{{item.gainNum}}金币</text>
+      </view>
+      <view class="job-item">
+        <view class="job-other" wx:if="{{tab==1}}">
+          <text>{{item.jobCityName}}</text>
+          <text>{{item.workYear}}</text>
+          <text>{{item.jobEducation}}</text>
+        </view>
+        <view class="job-other" wx:if="{{tab==2}}">
+          <text>{{item.areasName}}</text>
+          <text>{{item.compProperty}}</text>
+          <text>{{item.compSize}}</text>
+        </view>
+        <text class="job-date">{{item.commitTime}}</text>
+      </view>
+    </view>
+    </block>
+    <text class="iv-flex-justify-cen iv-color-999 iv-mt30rpx" wx:if="{{updataEnd.delivery}}">我是有底线的</text>
+    <text class="iv-flex-justify-cen iv-color-999 iv-mt30rpx" wx:else bindtap="loadMore">点击加载更多</text>
+  </view>
+  <view class="tab-page" wx:if="{{tab==2&&searchResult.download.resultList.length>0}}">
+    <block wx:for="{{searchResult.download.resultList}}" wx:key="{{item.id}}">
+      <view class="position-item"  bindtap="getPositionDetail" data-user-id="{{item.compId}}" data-position-id="{{item.positionId}}">
+        <view class="job-item">
+          <text class="iv-font32rpx" wx:if="{{tab==1}}">{{item.jobName}}</text>
+          <text class="iv-font32rpx" wx:if="{{tab==2}}">{{item.compName}}</text>
+          <text class="job-salary">{{item.symbol==0?'-':item.symbol==1?'+':''}}{{item.gainNum}}金币</text>
+        </view>
+        <view class="job-item">
+          <view class="job-other" wx:if="{{tab==1}}">
+            <text>{{item.jobCityName}}</text>
+            <text>{{item.workYear}}</text>
+            <text>{{item.jobEducation}}</text>
+          </view>
+          <view class="job-other" wx:if="{{tab==2}}">
+            <text>{{item.areasName}}</text>
+            <text>{{item.compProperty}}</text>
+            <text>{{item.compSize}}</text>
+          </view>
+          <text class="job-date">{{item.commitTime}}</text>
+        </view>
+      </view>
+    </block>
+    <text class="iv-flex-justify-cen iv-color-999 iv-mt30rpx" wx:if="{{updataEnd.download}}">我是有底线的</text>
+    <text class="iv-flex-justify-cen iv-color-999 iv-mt30rpx" wx:else bindtap="loadMore">点击加载更多</text>
+  </view>
+  <view class="iv-nothing" wx:if="{{(tab==1&&searchResult.delivery.resultList.length==0)||(tab==2&&searchResult.download.resultList.length==0)}}">
+    <navigator url="/pages/index/index" open-type="switchTab" >
+      <image class="iv-nothing-img " mode="widthFix" src="/images/common/nothing2.png"></image>
+      <view class="iv-nothing-text iv-mt10rpx">
+        <view>还没有收益哦~</view>
+        <view style="text-align: center">去赚钱></view>
+      </view>
+    </navigator>
+  </view>
+</view>
+<login-template login-dialog="{{loginDialog}}" id="login-dialog" bindload="reload" bindclose="closeLogin"></login-template>
+
+<view class="iv-modal-container" wx:if="{{modal}}" catchtouchmove="true" >
+  <view class="iv-modal-bg" bindtap="logoutCancel"></view>
+  <view class="iv-modal-wrap">
+    <view class="iv-modal-con">
+      <view class="iv-modal-message">确认退出帐号？</view>
+      <view class="iv-modal-btn">
+        <text class="iv-modal-btn-cancel" bindtap="logoutCancel">取消</text>
+        <text class="iv-modal-btn-submit active" bindtap="logout">确定</text>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class="iv-modal-container" wx:if="{{agreementModal}}" catchtouchmove="true" >
+  <view class="iv-modal-bg" bindtap="agreementCancel"></view>
+  <view class="iv-modal-wrap">
+    <view class="iv-modal-con">
+      <view class="iv-modal-message iv-font28rpx">是否接受用户服务协议<text class="iv-color-red" bindtap="protocol">《ivva用户协议》</text></view>
+      <view class="iv-modal-btn">
+        <text class="iv-modal-btn-cancel" bindtap="agreementCancel">取消</text>
+        <text class="iv-modal-btn-submit active" bindtap="agreementSubmit">确定</text>
+      </view>
+    </view>
+  </view>
+</view>
+

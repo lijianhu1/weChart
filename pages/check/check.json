@@ -1,0 +1,6 @@
+{
+    "navigationBarTitleText": "选择职位",
+    "usingComponents": {
+		"header": "/components/header/header"
+	}
+}

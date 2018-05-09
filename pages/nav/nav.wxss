@@ -1,0 +1,32 @@
+@charset "UTF-8";
+/**index.wxss**/
+.userinfo {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center; }
+
+.userinfo-avatar {
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx;
+  border-radius: 50%; }
+
+.userinfo-nickname {
+  color: #aaa; }
+
+.usermotto {
+  margin-top: 200px; }
+
+.top-bg {
+  width: 100%;
+  height: 185px;
+  background: -webkit-linear-gradient(top left, #F8523B, #D56CAB);
+  background: linear-gradient(to bottom right, #F8523B, #D56CAB);
+  /* 标准的语法 */ }

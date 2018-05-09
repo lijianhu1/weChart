@@ -1,0 +1,46 @@
+<!--personal.wxml-->
+<!--<header title="{{title}}"></header>-->
+<view class="iv-container iv-border-top-min iv-pt1">
+	<form class="iv-form" bindsubmit="formSubmit">
+		<view class="iv-bg-white iv-pl40 iv-pr40">
+			<view class="iv-form-itam">
+				<view class="iv-item-title">公司名称</view>
+				<input class="iv-item-input" name="compName" value="{{formInfo.compName}}"  placeholder="请填写"/>
+			</view>
+			<view class="iv-form-itam">
+				<view class="iv-item-title">担任职位</view>
+				<input class="iv-item-input" name="jobTitle" value="{{formInfo.jobTitle}}"  placeholder="请填写"/>
+			</view>
+			<view class="iv-form-itam">
+				<view class="iv-item-title">工作薪资</view>
+				<picker class="iv-item-input" name="salary" bindchange="bindSalaryChange" value="{{formInfo.salary}}" range="{{salaryArr}}" range-key="value">
+			  		<input value="{{salaryArr[formInfo.salary].value}}" disabled  placeholder="请选择"/>
+			 	</picker>
+			</view>
+			<view class="iv-form-itam">
+				<view class="iv-item-title">入职时间</view>
+				<picker class="iv-item-input" name="startTime" mode="date" value="{{formStartTime}}" start="{{startTimes}}" end="{{endTime}}" fields="month" bindchange="bindStartChange">
+				    <input value="{{formInfo.startTime}}" disabled  placeholder="请选择"/>
+			 	</picker>
+			</view>
+			<view class="iv-form-itam">
+				<view class="iv-item-title">离职时间</view>
+				<datepick-template dateValue="{{formInfo.endTime}}" class="iv-item-input" bindsuccess="bindEndChange"></datepick-template>
+				<!--<picker class="iv-item-input" name="endTime" mode="date" value="{{formEndTime}}"  start="{{startTime}}" end="{{endTimes}}" fields="month" bindchange="bindEndChange">-->
+				    <!--<input value="{{formInfo.endTime}}" disabled  placeholder="请选择"/>-->
+			 	<!--</picker>-->
+			</view>
+		</view>
+		<view class="iv-bg-white iv-pl40 iv-pr40 iv-mt15 iv-pt5">
+			<view class="iv-form-itam iv-form-textarea">
+				<view class="iv-item-title">工作描述</view>
+				<textarea class="iv-item-textarea" name="workDesc" value="{{formInfo.workDesc}}" bindinput="workDescInput" maxlength="500" style="height: 5em" />
+				<view class="iv-item-textarea-num">{{num}}/500</view>
+			</view>
+		</view>
+		<view class="iv-mt15 iv-pl40 iv-pr40">
+		    <button type="warn" formType="submit" class="iv-btn iv-btn-red iv-border-radius-100"> 保 存 </button>
+		</view>
+		<view class="iv-mt15 iv-color-red iv-text-center" wx:if="{{itemId}}" bindtap="formDelete">删除此工作经历</view>
+	</form>
+</view>

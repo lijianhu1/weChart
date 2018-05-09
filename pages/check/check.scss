@@ -1,0 +1,107 @@
+@charset "UTF-8";
+
+/* CSS Document */
+
+@import "../../utils/scss/base_variable";
+@import "../../utils/scss/base_tool";
+.choice-wrap {
+    background-color: #EEEEEE;
+    position: relative;
+    .choice-btn {
+        position: absolute;
+        right: 15px;
+        top: 20px;
+    }
+    .choice-con {
+        display: flex;
+        flex-direction: row;
+        padding:10px;
+        flex-wrap:wrap;
+        .choice-item {
+            padding: 5px 10px;
+            background-color: #FFFFFF;
+            margin: 5px;
+            border-radius: 2px;
+            .choice-close {
+                margin-right: 3px;
+                font-size: 30rpx;
+                display: inline-block;
+            }
+        }
+    }
+}
+.list-wrap {
+    background-color: #FFFFFF;
+    overflow: hidden;
+    .title {
+        padding: 10px 15px;
+        position: relative;
+        font-size: 28rpx;
+        @extend %minBorderTop;
+        &:after {
+            content: " ";
+            display: inline-block;
+            height: 18rpx;
+            width: 18rpx;
+            border-width: 0 1px 1px 0;
+            border-color: #d9d9d9;
+            border-style: solid;
+            transform: rotateZ(45deg);
+            position: absolute;
+            top: 50%;
+            margin-top: -8rpx;
+            right: 0;
+            margin-right: 15px;
+            transition: .3s;
+        }
+        &.title-open:after{
+            transform: rotateZ(225deg);
+        }
+    }
+    .list-item-bd {
+        height: 0;
+        overflow: hidden;
+        background-color: #F8F8FA;
+        padding: 0 15px;
+        &.list-item-bd-show {
+            height: auto;
+        }
+        .list-item-box {
+            opacity: 0;
+            position: relative;
+            line-height: 1.41176471;
+            transform: translateY(-50%);
+            transition: .3s;
+            &.list-item-box-show {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            .list-text{
+                padding: 7px 0;
+                @extend %minBorderTop;
+                /*  重写 checkbox 样式  */
+                checkbox .wx-checkbox-input{
+                   border-radius: 50%;
+                   width: 40rpx;
+                   height: 40rpx;
+                }
+                checkbox .wx-checkbox-input.wx-checkbox-input-checked{
+                   border: none;
+                   background: $g_redColor;
+                }
+                checkbox .wx-checkbox-input.wx-checkbox-input-checked::before{
+                   border-radius: 50%;
+                   width: 40rpx;
+                   height: 40rpx;
+                   line-height: 40rpx;
+                   text-align: center;
+                   font-size:30rpx;
+                   color:#fff;
+                   background: transparent;
+                   transform:translate(-50%, -50%) scale(1);
+                   -webkit-transform:translate(-50%, -50%) scale(1);
+                }
+            }
+        }
+    }
+}
